@@ -1,0 +1,2 @@
+# everyone-enjoy-bingo
+みんなのビンゴ
