@@ -11,9 +11,27 @@
 - 主催者もビンゴに参加することができます！（別ウィンドウ）
 
 ## spec
-サーバーサイド
+サーバーサイドアプリケーション
 ruby: 
 rails: 
-クライアントサイド
+クライアントサイドアプリケーション
 Hotwire
 daisyUI
+データベースアプリケーション
+MySQL
+
+## 開発環境について
+ローカルを想定。
+1. brew にて mysql を installし、以下を実行してmysqlを立ち上げる
+```shell
+brew services start mysql
+```
+2. データベースを作成しておきます
+```shell
+bin/rails db:setup
+```
+
+3. rails server で動作確認
+```shell
+bin/rails s
+```
