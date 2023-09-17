@@ -9,6 +9,8 @@ class CreateGames < ActiveRecord::Migration[7.0]
       t.datetime :finished_at
       t.boolean :random_awards, null: false, default: false
       t.json :emit_numbers
+      t.string :players_url_hash, null: false
+      t.string :owners_url_hash, null: false
 
       t.timestamps
     end
