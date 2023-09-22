@@ -17,15 +17,15 @@
     </p>
     <p>
       <%=form.label :max_players, "何名でプレイしますか？" %>
-      <%=form.number_field :max_players, required: true, value: 1, in: 1..20 %>人
+      <%=form.number_field :max_players, required: true, in: 1..20 %>人
     </p>
     <p>
       <%=form.label :max_winners, "何名アガリになったらゲームを終了としますか" %>
-      <%=form.number_field :max_winners, required: true, value: 1, in: 1..20 %>人
+      <%=form.number_field :max_winners, required: true, in: 1..20 %>人
     </p>
     <p>
       <%=form.label :entry_period_minutes, "開始までの制限時間を決めましょう" %>
-      <%=form.number_field :entry_period_minutes, required: true, value: 5, in: 1..30 %>人
+      <%=form.number_field :entry_period_minutes, required: true, in: 1..30 %>人
     </p>
     <p>
       <span>賞品は先着順ですか？</span>
