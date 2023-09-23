@@ -53,7 +53,7 @@ class OwnersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def owner_params
-    params.require(:owner).permit(:login_name, :password)
+    params.require(:owner).permit(:name, :password)
   end
 
   def revive_spell
