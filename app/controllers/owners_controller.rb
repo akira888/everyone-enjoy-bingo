@@ -39,12 +39,6 @@ class OwnersController < ApplicationController
     end
   end
 
-  # DELETE /owners/1
-  def destroy
-    @owner.destroy
-    redirect_to owners_url, notice: "Owner was successfully destroyed.", status: :see_other
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_owner
