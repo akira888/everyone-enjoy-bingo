@@ -3,7 +3,7 @@ class OwnersController < ApplicationController
 
   # GET /owners
   def index
-    @owners = Owner.all
+    @owners = game.owner.all
   end
 
   # GET /owners/1
@@ -12,7 +12,7 @@ class OwnersController < ApplicationController
 
   # GET /owners/new
   def new
-    @owner = Owner.new
+    @owner = game.build_owner
   end
 
   # GET /owners/1/edit
@@ -48,7 +48,11 @@ class OwnersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_owner
-      @owner = Owner.find(params[:id])
+      @owner = game.owner.find(params[:id])
+    end
+
+    def game
+      @game ||= Game.find(params[:game_id])
     end
 
     # Only allow a list of trusted parameters through.
