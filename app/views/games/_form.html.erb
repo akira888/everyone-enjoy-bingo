@@ -22,6 +22,11 @@
     <p>
       <%=form.label :max_winners, "何名アガリになったらゲームを終了としますか" %>
       <%=form.number_field :max_winners, required: true, in: 1..10 %>人
+      <span>賞品を登録しましょう</span>
+      <%= form.fields_for :awards do |awards_form| %>
+        <%=awards_form.label :title, '商品名称' %>
+        <%= awards_form.text_field :title, required: true %>
+      <% end %>
     </p>
     <p>
       <%=form.label :entry_period_minutes, "開始までの制限時間を決めましょう" %>
