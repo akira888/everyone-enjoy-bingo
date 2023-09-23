@@ -17,11 +17,11 @@
     </p>
     <p>
       <%=form.label :max_players, "何名でプレイしますか？" %>
-      <%=form.number_field :max_players, required: true, in: 1..20 %>人
+      <%=form.number_field :max_players, required: true, in: 1..100 %>人
     </p>
     <p>
       <%=form.label :max_winners, "何名アガリになったらゲームを終了としますか" %>
-      <%=form.number_field :max_winners, required: true, in: 1..20 %>人
+      <%=form.number_field :max_winners, required: true, in: 1..10 %>人
     </p>
     <p>
       <%=form.label :entry_period_minutes, "開始までの制限時間を決めましょう" %>
