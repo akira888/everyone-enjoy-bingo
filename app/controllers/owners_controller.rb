@@ -35,9 +35,9 @@ class OwnersController < ApplicationController
     @owner = current_game.owner
   end
 
-    def current_game
-      @game ||= Game.find(params[:game_id])
-    end
+  def current_game
+    @game ||= Game.find(params[:game_id])
+  end
 
   # Only allow a list of trusted parameters through.
   def owner_params
