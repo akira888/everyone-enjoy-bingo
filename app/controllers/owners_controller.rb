@@ -17,9 +17,6 @@ class OwnersController < ApplicationController
     @owner.password = revive_spell
   end
 
-  # GET /game/1/owner/edit
-  def edit
-  end
 
   # POST /game/1/owner
   def create
@@ -29,15 +26,6 @@ class OwnersController < ApplicationController
       redirect_to game_owner_url(@game), notice: "主催者情報が登録できましたね！いよいよゲームを始めましょう"
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /game/1/owner
-  def update
-    if @owner.update(owner_params)
-      redirect_to game_owner_url(@game), notice: "Owner was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 
