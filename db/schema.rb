@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_23_085517) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_101629) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.string "title", null: false
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_085517) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_owners_on_game_id"
+    t.index ["game_id"], name: "unique_index_on_game_id", unique: true
     t.index ["name"], name: "index_owners_on_name", unique: true
   end
 
