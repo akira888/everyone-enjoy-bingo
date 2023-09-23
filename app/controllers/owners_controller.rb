@@ -3,7 +3,7 @@ class OwnersController < ApplicationController
 
   # GET /owners
   def index
-    @owners = game.owner.all
+    @owners = current_game.owner.all
   end
 
   # GET /owners/1
@@ -12,7 +12,7 @@ class OwnersController < ApplicationController
 
   # GET /owners/new
   def new
-    @owner = game.build_owner
+    @owner = current_game.build_owner { login_name: }
   end
 
   # GET /owners/1/edit
@@ -42,10 +42,10 @@ class OwnersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_owner
-      @owner = game.owner.find(params[:id])
+      @owner = current_game.owner.find(params[:id])
     end
 
-    def game
+    def current_game
       @game ||= Game.find(params[:game_id])
     end
 
