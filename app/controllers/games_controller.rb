@@ -13,6 +13,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new(max_winners: 1, max_players: 1, entry_period_minutes: 5, random_awards: false)
+    @game.awards.build
   end
 
   # GET /games/1/edit
