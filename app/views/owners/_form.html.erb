@@ -10,6 +10,16 @@
       </ul>
     </div>
   <% end %>
+  <div class="items-center">
+    <h2>オーナーID(編集不可)</h2>
+    <p class="mb-2">
+      <%= form.text_field :owner_id, value:game.owners_url_hash, readonly: true %>
+    </p>
+    <p class="mb-2">
+      <%= form.label :password, 'ふっかつのじゅもん（編集可、20文字まで', class: 'block' %>
+      <%= form.password_field :password, required: true, max_length: 20 %>
+    </p>
+  </div>
 
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
