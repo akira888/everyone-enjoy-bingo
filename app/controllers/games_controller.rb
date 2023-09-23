@@ -12,7 +12,8 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    @game = Game.new
+    @game = Game.new(max_winners: 1, max_players: 1, entry_period_minutes: 5, random_awards: false)
+    @game.awards.build
   end
 
   # GET /games/1/edit
@@ -53,6 +54,8 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.fetch(:game, {})
+      game_attributes = %i[title max_winners max_players entry_period_minutes random_awards]
+      awards_attributes = %i[title]
+      params.require(:game).permit(game_attributes, awards_attributes: awards_attributes)
     end
 end

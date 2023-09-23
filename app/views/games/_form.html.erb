@@ -10,7 +10,39 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="items-center">
+    <p class="">
+      <%=form.label :title, "ゲームタイトル" %>
+      <%=form.text_field :title, required: true %>
+    </p>
+    <p>
+      <%=form.label :max_players, "何名でプレイしますか？" %>
+      <%=form.number_field :max_players, required: true, in: 1..100 %>人
+    </p>
+    <p>
+      <%=form.label :max_winners, "商品をもらえる人数は何人にしますか？" %>
+      <%=form.number_field :max_winners, required: true, in: 1..10 %>人
+    </p>
+    <h2 class="block">人数分の賞品を登録しましょう</h2>
+    <p>
+      <%= form.fields_for :awards do |awards_form| %>
+        <%=awards_form.label :title, '商品名称' %>
+        <%= awards_form.text_field :title, required: true %>
+      <% end %>
+    </p>
+    <p>
+      <%=form.label :entry_period_minutes, "開始までの制限時間を決めましょう" %>
+      <%=form.number_field :entry_period_minutes, required: true, in: 1..30 %>人
+    </p>
+    <h2>賞品は先着順ですか？</h2>
+    <p>
+      <%=form.radio_button :random_awards, false %>
+      <%=form.label :random_awards_false, "はい、先着順です" %></p>
+    <p>
+      <%=form.radio_button :random_awards, true %>
+      <%=form.label :random_awards_true, "いいえ、抽選です" %>
+    </p>
+  </div>
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
