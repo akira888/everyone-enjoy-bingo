@@ -9,6 +9,8 @@ class Game < ApplicationRecord
   validates :max_players, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 100 }
   validates :entry_period_minutes, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 30 }
   validates :random_awards, inclusion: { in: [true, false] }
+  validates :players_url_hash, presence: true, uniqueness: true
+  validates :owners_url_hash, presence: true, uniqueness: true
 
   private
 
