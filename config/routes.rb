@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :games do
-    resources :owners
+    resources :owners, except: %i[destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
