@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  has_many :awards
+  accepts_nested_attributes_for :awards
   before_save :set_url_hashes
 
 
