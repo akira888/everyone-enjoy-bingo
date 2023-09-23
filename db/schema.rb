@@ -54,12 +54,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_072030) do
 
   create_table "owners", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
-    t.string "login_name", default: "", null: false
+    t.string "name", default: "", null: false
     t.string "hashed_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_owners_on_game_id"
-    t.index ["login_name"], name: "index_owners_on_login_name", unique: true
+    t.index ["name"], name: "index_owners_on_name", unique: true
   end
 
   create_table "players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
