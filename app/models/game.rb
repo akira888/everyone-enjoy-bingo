@@ -12,6 +12,11 @@ class Game < ApplicationRecord
   validates :players_url_hash, presence: true, uniqueness: true
   validates :owners_url_hash, presence: true, uniqueness: true
 
+  # URLでのアクセスをIDではなくハッシュ値で行う
+  def to_param
+    owners_url_hash
+  end
+
   private
 
   def set_url_hashes

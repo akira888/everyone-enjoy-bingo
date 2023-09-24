@@ -34,7 +34,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   def update
     if @game.update(game_params)
-      redirect_to @game, notice: "Game was successfully updated.", status: :see_other
+      redirect_to game_url(@game), notice: "Game was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -49,7 +49,7 @@ class GamesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @game = Game.find(params[:id])
+      @game = Game.find_by(owners_url_hash: params[:owners_url_hash])
     end
 
     # Only allow a list of trusted parameters through.
