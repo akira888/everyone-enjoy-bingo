@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  include AASM
+
   has_many :awards, dependent: :destroy
   has_one :owner, dependent: :destroy
   accepts_nested_attributes_for :awards
@@ -11,6 +13,8 @@ class Game < ApplicationRecord
   validates :random_awards, inclusion: { in: [true, false] }
   validates :players_url_hash, presence: true, uniqueness: true
   validates :owners_url_hash, presence: true, uniqueness: true
+
+  enum status: { not_started: 0, wait_entry: 1, playing: 2, finished: 3 }
 
   # URLでのアクセスをIDではなくハッシュ値で行う
   def to_param
