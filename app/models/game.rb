@@ -2,7 +2,7 @@ class Game < ApplicationRecord
   has_many :awards, dependent: :destroy
   has_one :owner, dependent: :destroy
   accepts_nested_attributes_for :awards
-  before_create :set_url_hashes
+  before_validation :set_url_hashes
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :max_winners, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
@@ -15,8 +15,8 @@ class Game < ApplicationRecord
   private
 
   def set_url_hashes
-    self.players_url_hash = unique_url_hash(:players_url_hash)
-    self.owners_url_hash = unique_url_hash(:owners_url_hash)
+    self.players_url_hash = unique_url_hash(:players_url_hash) if players_url_hash.blank?
+    self.owners_url_hash = unique_url_hash(:owners_url_hash) if owners_url_hash.blank?
   end
 
   def unique_url_hash(field)
