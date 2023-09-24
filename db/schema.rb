@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_24_163402) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_24_234345) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.string "title", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_24_163402) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
+    t.datetime "entry_close_at"
     t.index ["owners_url_hash"], name: "index_games_on_owners_url_hash", unique: true
     t.index ["players_url_hash"], name: "index_games_on_players_url_hash", unique: true
   end
