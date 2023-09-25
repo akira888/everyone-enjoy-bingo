@@ -22,7 +22,7 @@ class Game < ApplicationRecord
     state :playing, display: 'プレイ中'
     state :finished, display: '終了'
 
-    event :waiting, before: -> { self.entry_close_at = (Time.now + 60 + 60 * self.entry_period_minutes).strftime '%F %H:%M:00' } do
+    event :waiting, before: -> { self.entry_close_at = (Time.now + 60 * self.entry_period_minutes).strftime '%F %H:%M:00' } do
       transitions from: :before_entry, to: :entry
     end
 
