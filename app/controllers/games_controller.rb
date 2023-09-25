@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[ show edit update destroy waiting ]
 
   # GET /games
   def index
@@ -8,6 +8,7 @@ class GamesController < ApplicationController
 
   # GET /games/1
   def show
+    render :entry and return if @game.entry?
   end
 
   # GET /games/new
@@ -44,6 +45,11 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     redirect_to games_url, notice: "Game was successfully destroyed.", status: :see_other
+  end
+
+  def waiting
+    @game.waiting!
+    redirect_to game_path(@game), status: :see_other, notice: "「参加者の受付を開始しました。"
   end
 
   private
