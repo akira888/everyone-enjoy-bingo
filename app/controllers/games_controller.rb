@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[ show edit update destroy waiting start ]
 
   # GET /games
   def index
@@ -8,6 +8,8 @@ class GamesController < ApplicationController
 
   # GET /games/1
   def show
+    render :entry and return if @game.entry?
+    render :play and return if @game.playing?
   end
 
   # GET /games/new
@@ -34,7 +36,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   def update
     if @game.update(game_params)
-      redirect_to @game, notice: "Game was successfully updated.", status: :see_other
+      redirect_to game_url(@game), notice: "Game was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,10 +48,20 @@ class GamesController < ApplicationController
     redirect_to games_url, notice: "Game was successfully destroyed.", status: :see_other
   end
 
+  def waiting
+    @game.waiting!
+    redirect_to game_path(@game), status: :see_other, notice: "参加者の受付を開始しました。"
+  end
+
+  def start
+    @game.start!
+    redirect_to game_path(@game), status: :see_other, notice: "ゲームが開始されました！"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @game = Game.find(params[:id])
+      @game = Game.find_by(owners_url_hash: params[:owners_url_hash])
     end
 
     # Only allow a list of trusted parameters through.

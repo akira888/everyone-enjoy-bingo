@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.5.0)
+      concurrent-ruby (~> 1.0)
     actioncable (7.0.8)
       actionpack (= 7.0.8)
       activesupport (= 7.0.8)
@@ -71,6 +73,7 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    chunky_png (1.4.0)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -156,6 +159,10 @@ GEM
       psych (>= 4.0.0)
     reline (0.3.8)
       io-console (~> 0.5)
+    rqrcode (2.2.0)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -190,13 +197,16 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  aasm
   bcrypt (~> 3.1.7)
   bootsnap
+  chunky_png
   debug
   importmap-rails
   mysql2 (~> 0.5)
   puma (~> 5.0)
   rails (~> 7.0.8)
+  rqrcode
   sprockets-rails
   stimulus-rails
   tailwindcss-rails

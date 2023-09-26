@@ -23,7 +23,7 @@ class OwnersController < ApplicationController
     @owner = current_game.build_owner(owner_params)
 
     if @owner.save
-      redirect_to game_owner_url(@game), notice: "主催者情報が登録できましたね！いよいよゲームを始めましょう"
+      redirect_to game_owner_url(@game.owners_url_hash), notice: "主催者情報が登録できましたね！いよいよゲームを始めましょう"
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class OwnersController < ApplicationController
   end
 
   def current_game
-    @game ||= Game.find(params[:game_id])
+    @game ||= Game.find_by(owners_url_hash: params[:game_owners_url_hash])
   end
 
   # Only allow a list of trusted parameters through.

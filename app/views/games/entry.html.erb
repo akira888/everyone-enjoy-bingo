@@ -1,0 +1,12 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <h2>以下の情報を使って、参加者を募集してみましょう</h2>
+    <p><%= image_tag qrcode_tag players_entry_url(@game.players_url_hash) %> </p>
+    <p>参加者用URL: <%= link_to players_entry_url(@game.players_url_hash), players_entry_url(@game.players_url_hash), target: '_blank' %></p>
+    <p>参加者の申込期限：<%= @game.entry_close_at %></p>
+    <p><%= link_to 'ゲームを開始する(参加は締め切られます)', start_game_path(@game), data: {turbo_method: :patch}, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></p>
+  </div>
+</div>

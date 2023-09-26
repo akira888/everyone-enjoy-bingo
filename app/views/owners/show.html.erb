@@ -4,11 +4,8 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
     <div class="flex flex-col justify-between items-center">
-      <h1 class="font-bold text-4xl">主催者情報詳細</h1>
-
-      <div id="<%= dom_id @owner %>">
-        <%= @owner.name %>
-      </div>
+      <h1 class="font-bold text-4xl">ゲームを始める準備が整いました！</h1>
+      <%= link_to 'まずは参加者を募りましょう', waiting_game_path(@game), data: {turbo_method: "patch"},  class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     </div>
   </div>
 </div>
