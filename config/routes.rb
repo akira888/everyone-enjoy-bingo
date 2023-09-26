@@ -11,4 +11,6 @@ Rails.application.routes.draw do
       patch :finish
     end
   end
+
+  get "entry/[:game_players_url_hash]", to: 'players#new', as: 'players_entry'
 end
