@@ -9,6 +9,7 @@ class GamesController < ApplicationController
   # GET /games/1
   def show
     render :entry and return if @game.entry?
+    render :play and return if @game.playing?
   end
 
   # GET /games/new
