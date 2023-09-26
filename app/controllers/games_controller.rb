@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy waiting ]
+  before_action :set_game, only: %i[ show edit update destroy waiting start ]
 
   # GET /games
   def index
@@ -49,7 +49,12 @@ class GamesController < ApplicationController
 
   def waiting
     @game.waiting!
-    redirect_to game_path(@game), status: :see_other, notice: "「参加者の受付を開始しました。"
+    redirect_to game_path(@game), status: :see_other, notice: "参加者の受付を開始しました。"
+  end
+
+  def start
+    @game.start!
+    redirect_to game_path(@game), status: :see_other, notice: "ゲームが開始されました！"
   end
 
   private
