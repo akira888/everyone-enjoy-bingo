@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :players
   # Defines the root path route ("/")
   root "games#index"
 
