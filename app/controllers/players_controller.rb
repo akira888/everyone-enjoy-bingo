@@ -13,7 +13,8 @@ class PlayersController < ApplicationController
   # GET /entry/[:game_players_url_hash]
   def new
     @game = Game.find_by!(players_url_hash: params[:game_players_url_hash])
-    @player = Player.new
+    @user = User.new
+    @player = @user.players.new(game_id: @game.id)
   end
 
   # GET /players/1/edit
@@ -22,7 +23,13 @@ class PlayersController < ApplicationController
 
   # POST /players
   def create
-    @player = Player.new(player_params)
+    @user = User.new(player_params[:user_attributes])
+    @game = Game.find(player_params[:game_id])
+    unless @user.save
+      return render :new, status: :unprocessable_entity
+    end
+
+    @player = @user.players.new(player_params)
 
     if @player.save
       redirect_to @player, notice: "Player was successfully created."
@@ -47,13 +54,16 @@ class PlayersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_player
-      @player = Player.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def player_params
-      params.fetch(:player, {})
-    end
+    # Use callbacks to share common setup or constraints between actions.
+  def set_player
+    @player = Player.find_by(url_hash: params[:url_hash])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def player_params
+    player_attributes = %i[game_id]
+    user_attributes = %i[name]
+    params.require(:player).permit(player_attributes, user_attributes: user_attributes)
+  end
 end
