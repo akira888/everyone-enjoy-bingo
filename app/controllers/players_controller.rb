@@ -13,6 +13,7 @@ class PlayersController < ApplicationController
   # GET /entry/[:game_players_url_hash]
   def new
     @game = Game.find_by!(players_url_hash: params[:game_players_url_hash])
+    render :entry_end and return unless @game.entry?
     @user = User.new
     @player = @user.players.new(game_id: @game.id)
   end
