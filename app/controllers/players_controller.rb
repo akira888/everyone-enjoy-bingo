@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: %i[ show edit update destroy ]
+  before_action :set_player, only: %i[ show ]
 
   # GET /players
   def index
@@ -18,10 +18,6 @@ class PlayersController < ApplicationController
     @player = @user.players.new(game_id: @game.id)
   end
 
-  # GET /players/1/edit
-  def edit
-  end
-
   # POST /players
   def create
     @user = User.new(player_params[:user_attributes])
@@ -37,21 +33,6 @@ class PlayersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  # PATCH/PUT /players/1
-  def update
-    if @player.update(player_params)
-      redirect_to @player, notice: "Player was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /players/1
-  def destroy
-    @player.destroy
-    redirect_to players_url, notice: "Player was successfully destroyed.", status: :see_other
   end
 
   private
