@@ -10,8 +10,9 @@ class PlayersController < ApplicationController
   def show
   end
 
-  # GET /players/new
+  # GET /entry/[:game_players_url_hash]
   def new
+    @game = Game.find_by!(players_url_hash: params[:game_players_url_hash])
     @player = Player.new
   end
 
