@@ -1,0 +1,13 @@
+
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <h2 class="text-4xl mb-5">ゲーム開始をお待ち下さい</h2>
+    <div class="flex flex-col items-center justify-center mt-5">
+      <p class="mb-2">「<%= @player.game.title %>」はまだ開始されていません。</p>
+      <p>しばらくそのままでお待ち下さい。</p>
+    </div>
+  </div>
+</div>

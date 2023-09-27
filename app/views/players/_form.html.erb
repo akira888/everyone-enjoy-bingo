@@ -1,0 +1,23 @@
+<%= form_with(model: player, class: "contents") do |form| %>
+  <% if player.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+        <% player.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.fields_for :user do |user_form| %>
+      <%= user_form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= user_form.text_field :name, class: "rounded-lg py-3 px-5 bg-gray-100 w-full", required: true %>
+    <% end %>
+  </p>
+  <%= form.hidden_field :game_id, value: game.id %>
+  <div class="inline">
+    <%= form.submit value: action_name == 'new' ? '申し込む': '更新する', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

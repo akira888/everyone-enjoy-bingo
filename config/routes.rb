@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "entry/[:game_players_url_hash]", to: 'players#new', as: 'players_entry'
+  get "entry/:game_players_url_hash", to: 'players#new', as: 'players_entry'
+
+  resources :players, param: :url_hash, only: %i[show create]
 end

@@ -1,0 +1,6 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">受付は終了しました</h1>
+  <p class="notice">「<%= @game.title %>」のビンゴは参加受付を終了しています。</p>
+
+  <%= link_to '新しくゲームを始める', new_game_path, class: "ml-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium" %>
+</div>
