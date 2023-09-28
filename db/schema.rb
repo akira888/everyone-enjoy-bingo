@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_211618) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_28_225228) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.string "title", null: false
@@ -53,7 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_211618) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.boolean "random_awards", default: false, null: false
-    t.json "emit_numbers"
     t.string "players_url_hash", null: false
     t.string "owners_url_hash", null: false
     t.datetime "created_at", null: false
