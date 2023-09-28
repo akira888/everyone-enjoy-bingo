@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_225228) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_28_230841) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.string "title", null: false
@@ -29,11 +29,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_225228) do
 
   create_table "cards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "player_id", null: false
+    t.bigint "game_id", null: false
     t.json "numbers"
     t.integer "one_left_lines"
     t.integer "bingo_lines"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_cards_on_game_id"
     t.index ["player_id"], name: "index_cards_on_player_id"
   end
 
@@ -110,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_225228) do
 
   add_foreign_key "awards", "games"
   add_foreign_key "card_logs", "cards"
+  add_foreign_key "cards", "games"
   add_foreign_key "cards", "players"
   add_foreign_key "game_logs", "games"
   add_foreign_key "owners", "games"
