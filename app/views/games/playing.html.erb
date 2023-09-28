@@ -9,7 +9,13 @@
     <div id="machine">
       <%= link_to 'ビンゴを回す！', play_game_path(@game), data: { turbo_method: "patch" }, class: "ml-2 rounded-lg py-3 px-5 bg-yellow-100 inline-block font-medium" %>
     </div>
+    <h2>ゲームの状況</h2>
     <%# TODO 参加者情報を置く %>
-    <%# TODO 排出した数字を置く %>
+    <h2>今までに出た数字はこちら</h2>
+    <% @emit_numbers.each do |number| %>
+      <div class="inline-block">
+        <%= number %>
+      </div>
+    <% end %>
   </div>
 </div>

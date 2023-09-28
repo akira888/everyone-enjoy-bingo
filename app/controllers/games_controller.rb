@@ -11,7 +11,8 @@ class GamesController < ApplicationController
     render :before_entry and return if @game.before_entry?
     render :entry and return if @game.entry?
 
-    render :playing and return if @game.playing?
+    @emit_numbers = @game.game_logs.recent.emit_numbers
+    render :playing if @game.playing?
   end
 
   # GET /games/new
