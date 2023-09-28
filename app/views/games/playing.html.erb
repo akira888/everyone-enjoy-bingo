@@ -1,0 +1,21 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <h1>ビンゴを楽しみましょう！</h1>
+    <p>主催者がビンゴマシンを回していきます。
+    参加者の方はお手元のビンゴカードをご覧頂き、出た数字と同じ物があれば、その数字をクリックしてください。</p>
+    <div id="machine">
+      <%= link_to 'ビンゴを回す！', play_game_path(@game), data: { turbo_method: "patch" }, class: "ml-2 rounded-lg py-3 px-5 bg-yellow-100 inline-block font-medium" %>
+    </div>
+    <h2>ゲームの状況</h2>
+    <%# TODO 参加者情報を置く %>
+    <h2>今までに出た数字はこちら</h2>
+    <% @emit_numbers.each do |number| %>
+      <div class="inline-block">
+        <%= number %>
+      </div>
+    <% end %>
+  </div>
+</div>

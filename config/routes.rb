@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       patch :waiting
       patch :start
+      patch :play
       patch :finish
     end
   end

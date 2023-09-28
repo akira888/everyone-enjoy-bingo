@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy waiting start ]
+  before_action :set_game, only: %i[ show edit update destroy waiting start play ]
 
   # GET /games
   def index
@@ -10,7 +10,9 @@ class GamesController < ApplicationController
   def show
     render :before_entry and return if @game.before_entry?
     render :entry and return if @game.entry?
-    render :play and return if @game.playing?
+
+    @emit_numbers = @game.game_logs.recent.emit_numbers
+    render :playing if @game.playing?
   end
 
   # GET /games/new
@@ -57,6 +59,12 @@ class GamesController < ApplicationController
   def start
     @game.start!
     redirect_to game_path(@game), status: :see_other, notice: "ゲームが開始されました！"
+  end
+
+  def play
+    @machine = Machine.new(@game)
+    @machine.spin!
+    redirect_to game_path(@game), status: :see_other, notice: "こちらの数字がでました！" + @machine.emit_number.to_s
   end
 
   private
