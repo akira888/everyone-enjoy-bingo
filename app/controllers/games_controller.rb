@@ -10,7 +10,8 @@ class GamesController < ApplicationController
   def show
     render :before_entry and return if @game.before_entry?
     render :entry and return if @game.entry?
-    render :play and return if @game.playing?
+
+    render :playing and return if @game.playing?
   end
 
   # GET /games/new
