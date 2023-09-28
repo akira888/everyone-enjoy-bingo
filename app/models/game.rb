@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   has_many :awards, dependent: :destroy
   has_one :owner, dependent: :destroy
   has_many :game_logs, dependent: :destroy
+  has_many :players, dependent: :destroy
   accepts_nested_attributes_for :awards
   before_validation :set_url_hashes, on: :create
 

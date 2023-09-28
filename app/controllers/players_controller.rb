@@ -27,6 +27,7 @@ class PlayersController < ApplicationController
     end
 
     @player = @user.players.new(player_params)
+    @player.build_card(game_id: @game.id)
 
     if @player.save
       redirect_to @player, notice: "Player was successfully created."
