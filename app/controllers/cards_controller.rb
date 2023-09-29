@@ -1,15 +1,15 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[ show edit update ]
+  before_action :set_players_card
 
-  # GET /cards/1
+  # GET /players/h3t5ij/card
   def show
   end
 
-  # GET /cards/1/edit
+  # GET /players/h3t5ij/card/playing
   def edit
   end
 
-  # PATCH/PUT /cards/1
+  # PATCH/PUT /players/h3t5ij/card
   def update
     if @card.update(card_params)
       redirect_to @card, notice: "Card was successfully updated.", status: :see_other
@@ -19,13 +19,12 @@ class CardsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_card
-      @card = Card.find(params[:id])
+    def set_players_card
+      @player = Player.find_by(url_hash: params[:player_url_hash])
+      @card = @player.card
     end
 
-    # Only allow a list of trusted parameters through.
     def card_params
-      params.fetch(:card, {})
+      params.require(:card).permit(:number)
     end
 end
