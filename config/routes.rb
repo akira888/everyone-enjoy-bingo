@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :cards
   # Defines the root path route ("/")
   root "games#index"
 
@@ -16,5 +15,7 @@ Rails.application.routes.draw do
 
   get "entry/:game_players_url_hash", to: 'players#new', as: 'players_entry'
 
-  resources :players, param: :url_hash, only: %i[show create]
+  resources :players, param: :url_hash, only: %i[show create] do
+    resources :cards, except: %i[destroy]
+  end
 end
