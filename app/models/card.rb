@@ -10,11 +10,11 @@ class Card < ApplicationRecord
 
   def set_card_numbers
     numbers = {}
-    numbers[:b] = (1..15).to_a.sample(5).map(&:to_s)
-    numbers[:i] = (16..30).to_a.sample(5).map(&:to_s)
-    numbers[:n] = (31..45).to_a.sample(4).map(&:to_s).insert(2, 'x')
-    numbers[:g] = (46..60).to_a.sample(5).map(&:to_s)
-    numbers[:o] = (61..75).to_a.sample(5).map(&:to_s)
+    numbers[:b] = (1..15).to_a.sample(5)
+    numbers[:i] = (16..30).to_a.sample(5)
+    numbers[:n] = (31..45).to_a.sample(4).insert(2, 'x')
+    numbers[:g] = (46..60).to_a.sample(5)
+    numbers[:o] = (61..75).to_a.sample(5)
 
     self.numbers = Card.where(game_id: self.game_id, numbers: numbers).exists? ? set_card_numbers : numbers
   end
