@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get "entry/:game_players_url_hash", to: 'players#new', as: 'players_entry'
 
   resources :players, param: :url_hash, only: %i[show create] do
-    resource :card, except: %i[new create destroy]
+    resource :card, except: %i[index new create destroy]
   end
 end
