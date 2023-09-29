@@ -1,11 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show ]
 
-  # GET /players
-  def index
-    @players = Player.all
-  end
-
   # GET /players/1
   def show
   end

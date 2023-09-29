@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :games, param: :owners_url_hash do
-    resource :owner, except: %i[edit, update, destroy]
+    resource :owner, only: %i[show new create]
     member do
       patch :waiting
       patch :start
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get "entry/:game_players_url_hash", to: 'players#new', as: 'players_entry'
 
-  resources :players, param: :url_hash, only: %i[show create] do
-    resource :card, except: %i[index new create destroy]
+  resources :players, param: :url_hash, only: %i[show new create] do
+    resource :card, only: %i[show edit update]
   end
 end
