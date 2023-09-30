@@ -53,4 +53,4 @@ production:
   database: everyone_enjoy_bingo_production
   username: eeb
   password: <%= ENV["EVERYONE_ENJOY_BINGO_DATABASE_PASSWORD"] %>
-  host: mysql-pm3w:3306
+  host: http://mysql-pm3w:33060
