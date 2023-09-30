@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: everyone_enjoy_bingo_production
-  username: everyone_enjoy_bingo
+  username: eeb
   password: <%= ENV["EVERYONE_ENJOY_BINGO_DATABASE_PASSWORD"] %>
+  host: mysql-pm3w
