@@ -1,6 +1,8 @@
 class Card < ApplicationRecord
   belongs_to :player
 
+  attribute :number, :integer
+
   validates :player_id, presence: true
   validates :game_id, presence: true
 
