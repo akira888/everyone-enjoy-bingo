@@ -5,11 +5,10 @@
 
   <div class="flex flex-col justify-between items-center">
     <h1 class="font-bold text-4xl mb-2">みんなのビンゴ</h1>
-    <%= link_to 'New game', new_game_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-    <span class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">Load data</span>
+    <%= link_to 'ニューゲーム', new_game_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <div id="games" class="min-w-full">
-    <%= render @games %>
+    <%= render @games if Rails.env.development? %>
   </div>
 </div>
