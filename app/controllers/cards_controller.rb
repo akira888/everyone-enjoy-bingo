@@ -7,13 +7,15 @@ class CardsController < ApplicationController
 
   # GET /players/h3t5ij/card/playing
   def edit
+    @emit_numbers = @player.game.game_logs.emit_numbers
   end
 
   # PATCH/PUT /players/h3t5ij/card
   def update
-    if @card.update(card_params)
-      redirect_to @card, notice: "Card was successfully updated.", status: :see_other
+    if @card.update_numbers(card_params)
+      redirect_to playing_player_card_path(@player), notice: "Card was successfully updated.", status: :see_other
     else
+      @emit_numbers = @player.game.game_logs.emit_numbers
       render :edit, status: :unprocessable_entity
     end
   end
@@ -25,6 +27,6 @@ class CardsController < ApplicationController
     end
 
     def card_params
-      params.require(:card).permit(:number)
+      params.require(:card).permit(:key, :number)
     end
 end
