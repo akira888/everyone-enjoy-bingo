@@ -3,7 +3,7 @@
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-    <h1>ビンゴを楽しみましょう！</h1>
+    <h1 class="font-bold text-4xl">「<%= @game.title %>」開催中！</h1>
     <p>主催者がビンゴマシンを回していきます。
     参加者の方はお手元のビンゴカードをご覧頂き、出た数字と同じ物があれば、その数字をクリックしてください。</p>
     <div id="machine">

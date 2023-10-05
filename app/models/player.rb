@@ -1,6 +1,8 @@
 class Player < ApplicationRecord
   belongs_to :game
   belongs_to :user, inverse_of: :players
+  has_one :card, dependent: :destroy
+
   accepts_nested_attributes_for :user
   before_validation :set_url_hash, on: :create
 

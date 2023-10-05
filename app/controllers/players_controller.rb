@@ -1,11 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show ]
 
-  # GET /players
-  def index
-    @players = Player.all
-  end
-
   # GET /players/1
   def show
   end
@@ -27,6 +22,7 @@ class PlayersController < ApplicationController
     end
 
     @player = @user.players.new(player_params)
+    @player.build_card(game_id: @game.id)
 
     if @player.save
       redirect_to @player, notice: "Player was successfully created."

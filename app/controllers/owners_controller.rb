@@ -2,11 +2,6 @@ class OwnersController < ApplicationController
   before_action :set_owner, only: %i[ show edit update destroy ]
 
   # GET /game/1/owner
-  def index
-    # なにもしない
-  end
-
-  # GET /game/1/owner
   def show
   end
 
