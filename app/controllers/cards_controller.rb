@@ -13,6 +13,11 @@ class CardsController < ApplicationController
   # PATCH/PUT /players/h3t5ij/card
   def update
     if @card.update_numbers(card_params)
+
+      if @card.game.over?
+        @card.game.finish!
+      end
+
       redirect_to playing_player_card_path(@player), notice: "Card was successfully updated.", status: :see_other
     else
       @emit_numbers = @player.game.game_logs.emit_numbers
