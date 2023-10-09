@@ -13,6 +13,7 @@ class GamesController < ApplicationController
 
     @emit_numbers = @game.game_logs.recent.emit_numbers
     render :playing if @game.playing?
+    render :finished if @game.finished?
   end
 
   # GET /games/new
@@ -64,6 +65,11 @@ class GamesController < ApplicationController
   def play
     @machine = Machine.new(@game)
     @machine.spin!
+
+    if @game.over?
+      @game.finish!
+    end
+
     redirect_to game_path(@game), status: :see_other, notice: "こちらの数字がでました！" + @machine.emit_number.to_s
   end
 

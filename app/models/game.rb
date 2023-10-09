@@ -47,6 +47,10 @@ class Game < ApplicationRecord
     game_logs.where(emit_number: number).exists?
   end
 
+  def over?
+    cards.where(bingo_lines: max_winners..).exists?
+  end
+
   private
 
   def set_url_hashes
