@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_230841) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_09_032719) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.string "title", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_230841) do
 
   create_table "card_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "card_id", null: false
-    t.string "type"
+    t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_card_logs_on_card_id"
@@ -31,8 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_230841) do
     t.bigint "player_id", null: false
     t.bigint "game_id", null: false
     t.json "numbers"
-    t.integer "one_left_lines"
-    t.integer "bingo_lines"
+    t.integer "bingo_lines", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_cards_on_game_id"
@@ -80,8 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_230841) do
     t.string "url_hash", default: "", null: false
     t.bigint "game_id", null: false
     t.bigint "user_id", null: false
-    t.integer "one_left_lines"
-    t.integer "bingo_lines"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_players_on_game_id"

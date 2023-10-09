@@ -5,6 +5,7 @@ class Game < ApplicationRecord
   has_one :owner, dependent: :destroy
   has_many :game_logs, dependent: :destroy
   has_many :players, dependent: :destroy
+  has_many :cards, through: :players
   accepts_nested_attributes_for :awards
   before_validation :set_url_hashes, on: :create
 
@@ -40,6 +41,14 @@ class Game < ApplicationRecord
   # URLでのアクセスをIDではなくハッシュ値で行う
   def to_param
     owners_url_hash
+  end
+
+  def emit_number?(number)
+    game_logs.where(emit_number: number).exists?
+  end
+
+  def over?
+    cards.where(bingo_lines: max_winners..).exists?
   end
 
   private

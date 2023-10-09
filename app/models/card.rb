@@ -1,7 +1,9 @@
 class Card < ApplicationRecord
-  belongs_to :player
+  include BingoCallable
 
-  attribute :number, :integer
+  belongs_to :player
+  belongs_to :game, inverse_of: :cards
+  has_many :card_logs, dependent: :destroy
 
   validates :player_id, presence: true
   validates :game_id, presence: true
@@ -14,10 +16,11 @@ class Card < ApplicationRecord
     number = params[:number].to_i
     key = params[:key].to_s
     return false unless has_number?(key, number)
+    return false unless emit_number?(number)
 
     numbers[key].map! { |v| v == number ? 'x' : v }
 
-    save
+    save && count_up_bingo
   end
 
   def has_number?(key, number)
@@ -54,4 +57,14 @@ class Card < ApplicationRecord
     end
   end
 
+  def count_up_bingo
+    count = count_bingo_lines(numbers)
+    return if count == bingo_lines
+    (count - bingo_lines).times { card_logs.build(action: :bingo) }
+    update(bingo_lines: count)
+  end
+
+  def emit_number?(number)
+    game.emit_number?(number)
+  end
 end
