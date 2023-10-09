@@ -49,7 +49,8 @@ class Game < ApplicationRecord
   end
 
   def over?
-    cards.where(bingo_lines: max_winners..).exists?
+    return false unless playing?
+    cards.where(bingo_lines: need_bingo_lines..).count >= max_winners
   end
 
   private
