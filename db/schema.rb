@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_032028) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_09_032719) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.string "title", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_032028) do
 
   create_table "card_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "card_id", null: false
-    t.string "type"
+    t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_card_logs_on_card_id"
