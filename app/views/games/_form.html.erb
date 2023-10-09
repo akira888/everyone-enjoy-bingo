@@ -17,11 +17,15 @@
     </p>
     <p>
       <%=form.label :max_players, "何名でプレイしますか？" %>
-      <%=form.number_field :max_players, required: true, in: 1..100 %>人
+      <%=form.number_field :max_players, in: 1..100 %>人
+    </p>
+    <p>
+      <%=form.label :need_bingo_lines, "何本ラインを揃えたら賞品がもらえますか？" %>
+      <%=form.number_field :need_bingo_lines, in: 1..12 %>本
     </p>
     <p>
       <%=form.label :max_winners, "賞品をもらえる人数は何人にしますか？" %>
-      <%=form.number_field :max_winners, required: true, in: 1..10 %>人
+      <%=form.number_field :max_winners, in: 1..10 %>人
     </p>
     <h2 class="block">人数分の賞品を登録しましょう</h2>
     <p>
