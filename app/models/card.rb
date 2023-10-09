@@ -2,8 +2,8 @@ class Card < ApplicationRecord
   include BingoCallable
 
   belongs_to :player
-
-  attribute :number, :integer
+  belongs_to :game, inverse_of: :cards
+  has_many :card_logs, dependent: :destroy
 
   validates :player_id, presence: true
   validates :game_id, presence: true
@@ -16,6 +16,7 @@ class Card < ApplicationRecord
     number = params[:number].to_i
     key = params[:key].to_s
     return false unless has_number?(key, number)
+    return false unless emit_number?(number)
 
     numbers[key].map! { |v| v == number ? 'x' : v }
 
