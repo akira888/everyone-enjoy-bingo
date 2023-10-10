@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_10_081459) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_121036) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.bigint "winner_id"
@@ -101,12 +101,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_081459) do
 
   create_table "winners", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
-    t.bigint "award_id"
     t.bigint "user_id", null: false
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["award_id"], name: "index_winners_on_award_id"
     t.index ["game_id"], name: "index_winners_on_game_id"
     t.index ["user_id"], name: "index_winners_on_user_id"
   end
@@ -120,7 +118,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_081459) do
   add_foreign_key "owners", "games"
   add_foreign_key "players", "games"
   add_foreign_key "players", "users"
-  add_foreign_key "winners", "awards"
   add_foreign_key "winners", "games"
   add_foreign_key "winners", "users"
 end
