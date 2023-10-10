@@ -69,6 +69,10 @@ class Game < ApplicationRecord
     award.present_to(winner) if award.present?
   end
 
+  def play_time
+    Time.zone.at(finished_at - started_at)
+  end
+
   private
 
   def set_url_hashes

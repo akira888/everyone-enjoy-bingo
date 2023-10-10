@@ -1,5 +1,6 @@
 class Award < ApplicationRecord
   belongs_to :game, inverse_of: :awards
+  belongs_to :winner, inverse_of: :award, optional: true
 
   validates :title, presence: true, length: { maximum: 255 }
 
