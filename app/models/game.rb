@@ -56,6 +56,19 @@ class Game < ApplicationRecord
     cards.where(bingo_lines: need_bingo_lines..).count >= max_winners
   end
 
+  # 少しイレギュラーなことをしているので後でサービスクラスなどに移植する
+  def present_award_to(winner)
+    return false unless winner.present?
+
+    if random_awards
+      award = awards.not_present_yet.sample
+    else
+      award = awards.not_present_yet.order(:order_number).first
+    end
+
+    award.present_to(winner) if award.present?
+  end
+
   private
 
   def set_url_hashes

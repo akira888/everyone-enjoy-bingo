@@ -13,6 +13,9 @@ class CardsController < ApplicationController
   # PATCH/PUT /players/h3t5ij/card
   def update
     if @card.update_numbers(card_params)
+      if @player.winner?
+        @player.win!
+      end
 
       if @card.game.over?
         @card.game.finish!

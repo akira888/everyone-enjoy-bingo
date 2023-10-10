@@ -14,8 +14,12 @@ class Player < ApplicationRecord
     card.reload && card.bingo_lines >= game.need_bingo_lines
   end
 
+  # 少しイレギュラーなことをしているので後でサービスクラスなどに移植する
   def win!
-    game.winners.build(user_id: user.id).save!
+    winner = game.winners.build(user_id: user.id)
+    winner.save!
+    # 一旦即時付与する
+    game.present_award_to winner
   end
 
   def to_param
