@@ -26,9 +26,12 @@ class Player < ApplicationRecord
     game.present_award_to winner
   end
 
-  def to_param
-    url_hash
+  def award
+    return nil unless winner?
+    game.awards.find_by(winner_id: winner_id)
   end
+
+  def to_param = url_hash
 
   private
 
@@ -41,4 +44,6 @@ class Player < ApplicationRecord
 
     Player.find_by(field => hash) ? unique_url_hash(field) : hash
   end
+
+  def winner_id = game.winners.find_by(user_id: user.id).id
 end
