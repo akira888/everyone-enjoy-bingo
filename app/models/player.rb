@@ -10,6 +10,14 @@ class Player < ApplicationRecord
   validates :user_id, presence: true
   validates :url_hash, presence: true, uniqueness: true
 
+  def winner?
+    card.reload && card.bingo_lines >= game.need_bingo_lines
+  end
+
+  def win!
+    game.winners.build(player_id: id).save!
+  end
+
   def to_param
     url_hash
   end

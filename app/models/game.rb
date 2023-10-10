@@ -6,7 +6,10 @@ class Game < ApplicationRecord
   has_many :game_logs, dependent: :destroy
   has_many :players, dependent: :destroy
   has_many :cards, through: :players
+  has_many :winners, dependent: :destroy
+
   accepts_nested_attributes_for :awards
+
   before_validation :set_url_hashes, on: :create
 
   validates :title, presence: true, length: { maximum: 255 }
