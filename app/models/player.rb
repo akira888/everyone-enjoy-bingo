@@ -15,7 +15,7 @@ class Player < ApplicationRecord
   end
 
   def win!
-    game.winners.build(player_id: id).save!
+    game.winners.build(user_id: user.id).save!
   end
 
   def to_param
