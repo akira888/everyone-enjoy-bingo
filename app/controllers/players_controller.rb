@@ -3,6 +3,8 @@ class PlayersController < ApplicationController
 
   # GET /players/1
   def show
+    @card = @player.card
+    @game = @player.game
   end
 
   # GET /entry/[:game_players_url_hash]

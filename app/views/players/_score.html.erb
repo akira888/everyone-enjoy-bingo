@@ -1,0 +1,24 @@
+<h2 class="text-4xl mb-5">お疲れ様でした！</h2>
+<div class="flex flex-col items-center justify-center mt-5">
+  <p class="mb-2">「<%= @player.game.title %>」でのあなたの成績はこちらです^^</p>
+  <div class="scores">
+    <div class="score">
+      <p class="text-2xl mb-2">ビンゴになった本数</p>
+      <p class="text-4xl"><%= @card.card_logs.bingo_count %>本</p>
+    </div>
+    <div class="score">
+      <p class="text-2xl mb-2">リーチになった回数</p>
+      <p class="text-4xl"><%= @card.card_logs.one_left_count %>本</p>
+    </div>
+    <div class="score">
+      <p class="text-2xl mb-2">ゲットした賞品</p>
+      <% if @player.winner? %>
+        <p class="congratulations">おめでとうございます＼(^o^)／</p>
+        <p class="text-4xl">「<%= @player.award.title %>」を獲得されました！</p>
+      <% else %>
+        <p class="nice-fight">残念…</p>
+        <p class="text-4xl">今回は賞品をもらえませんでした</p>
+      <% end %>
+    </div>
+  </div>
+</div>
