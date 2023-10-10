@@ -1,5 +1,11 @@
 <div id="<%= dom_id game %>">
   <% if action_name != "show" %>
+    <%= content_tag( :h3, class: "text-3") do %>
+        タイトル: <%= game.title %>
+    <% end %>
+    <%= content_tag :h4, class: "text-3" do %>
+      進行状況: <%= game.status %>
+    <% end %>
     <%= link_to "Show this game", game, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this game', edit_game_path(game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
