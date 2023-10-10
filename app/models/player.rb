@@ -10,8 +10,12 @@ class Player < ApplicationRecord
   validates :user_id, presence: true
   validates :url_hash, presence: true, uniqueness: true
 
-  def winner?
+  def bingo?
     card.reload && card.bingo_lines >= game.need_bingo_lines
+  end
+
+  def winner?
+    game.winners.exists?(user_id: user.id)
   end
 
   # 少しイレギュラーなことをしているので後でサービスクラスなどに移植する
