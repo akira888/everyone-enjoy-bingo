@@ -1,9 +1,9 @@
 module BingoCallable
-  def count_bingo_lines(card)
+  def count_bingo_lines(card_numbers)
     count = 0
-    count += count_bingo_horizontal(card.values)
-    count += count_bingo_vertical(card.values)
-    count + count_bingo_diagonal(card.values)
+    count += count_bingo_horizontal(card_numbers.values)
+    count += count_bingo_vertical(card_numbers.values)
+    count + count_bingo_diagonal(card_numbers)
   end
 
   def count_bingo_horizontal(matrix)
@@ -24,8 +24,8 @@ module BingoCallable
 
   def count_bingo_diagonal(matrix)
     count = 0
-    count += 1 if matrix[0][0] == 'x' && matrix[1][1] == 'x' && matrix[2][2] == 'x' && matrix[3][3] == 'x' && matrix[4][4] == 'x'
-    count += 1 if matrix[0][4] == 'x' && matrix[1][3] == 'x' && matrix[2][2] == 'x' && matrix[3][1] == 'x' && matrix[4][0] == 'x'
+    count += 1 if matrix["b"][0] == 'x' && matrix["i"][1] == 'x' && matrix["n"][2] == 'x' && matrix["g"][3] == 'x' && matrix["o"][4] == 'x'
+    count += 1 if matrix["b"][4] == 'x' && matrix["i"][3] == 'x' && matrix["n"][2] == 'x' && matrix["g"][1] == 'x' && matrix["o"][0] == 'x'
     count
   end
 end

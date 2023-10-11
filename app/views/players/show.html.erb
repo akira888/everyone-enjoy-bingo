@@ -1,10 +1,10 @@
-
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
     <%= render 'please_wait' if @player.game.entry? %>
-    <%= render 'let_go_bingo' if @player.game.playing? %>
+    <%= render 'let_go_bingo' if @player.game.playing? && ! @player.winner? %>
+    <%= render 'score' if @player.game.finished? || @player.winner? %>
   </div>
 </div>

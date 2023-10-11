@@ -6,14 +6,18 @@ class Game < ApplicationRecord
   has_many :game_logs, dependent: :destroy
   has_many :players, dependent: :destroy
   has_many :cards, through: :players
+  has_many :winners, dependent: :destroy
+
   accepts_nested_attributes_for :awards
+
   before_validation :set_url_hashes, on: :create
 
   validates :title, presence: true, length: { maximum: 255 }
-  validates :max_winners, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
-  validates :max_players, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 100 }
+  validates :max_winners, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
+  validates :max_players, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 100 }
   validates :entry_period_minutes, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 30 }
   validates :random_awards, inclusion: { in: [true, false] }
+  validates :need_bingo_lines, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 12 }
   validates :players_url_hash, presence: true, uniqueness: true
   validates :owners_url_hash, presence: true, uniqueness: true
 
@@ -48,7 +52,25 @@ class Game < ApplicationRecord
   end
 
   def over?
-    cards.where(bingo_lines: max_winners..).exists?
+    return false unless playing?
+    cards.where(bingo_lines: need_bingo_lines..).count >= max_winners
+  end
+
+  # 少しイレギュラーなことをしているので後でサービスクラスなどに移植する
+  def present_award_to(winner)
+    return false unless winner.present?
+
+    if random_awards
+      award = awards.not_present_yet.sample
+    else
+      award = awards.not_present_yet.order(:order_number).first
+    end
+
+    award.present_to(winner) if award.present?
+  end
+
+  def play_time
+    Time.zone.at(finished_at - started_at)
   end
 
   private

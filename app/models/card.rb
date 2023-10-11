@@ -59,7 +59,7 @@ class Card < ApplicationRecord
 
   def count_up_bingo
     count = count_bingo_lines(numbers)
-    return if count == bingo_lines
+    return true if count == bingo_lines
     (count - bingo_lines).times { card_logs.build(action: :bingo) }
     update(bingo_lines: count)
   end

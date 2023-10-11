@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_032719) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_121036) do
   create_table "awards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
+    t.bigint "winner_id"
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_number", default: 1, null: false
     t.index ["game_id"], name: "index_awards_on_game_id"
+    t.index ["winner_id"], name: "index_awards_on_winner_id"
   end
 
   create_table "card_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -60,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_032719) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
     t.datetime "entry_close_at"
+    t.integer "need_bingo_lines", limit: 2, default: 1, null: false
     t.index ["owners_url_hash"], name: "index_games_on_owners_url_hash", unique: true
     t.index ["players_url_hash"], name: "index_games_on_players_url_hash", unique: true
   end
@@ -97,17 +101,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_032719) do
 
   create_table "winners", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "game_id", null: false
-    t.bigint "award_id", null: false
     t.bigint "user_id", null: false
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["award_id"], name: "index_winners_on_award_id"
     t.index ["game_id"], name: "index_winners_on_game_id"
     t.index ["user_id"], name: "index_winners_on_user_id"
   end
 
   add_foreign_key "awards", "games"
+  add_foreign_key "awards", "winners"
   add_foreign_key "card_logs", "cards"
   add_foreign_key "cards", "games"
   add_foreign_key "cards", "players"
@@ -115,7 +118,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_032719) do
   add_foreign_key "owners", "games"
   add_foreign_key "players", "games"
   add_foreign_key "players", "users"
-  add_foreign_key "winners", "awards"
   add_foreign_key "winners", "games"
   add_foreign_key "winners", "users"
 end

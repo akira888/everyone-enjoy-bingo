@@ -10,9 +10,28 @@ class Player < ApplicationRecord
   validates :user_id, presence: true
   validates :url_hash, presence: true, uniqueness: true
 
-  def to_param
-    url_hash
+  def bingo?
+    card.reload && card.bingo_lines >= game.need_bingo_lines
   end
+
+  def winner?
+    game.winners.exists?(user_id: user.id)
+  end
+
+  # 少しイレギュラーなことをしているので後でサービスクラスなどに移植する
+  def win!
+    winner = game.winners.build(user_id: user.id)
+    winner.save!
+    # 一旦即時付与する
+    game.present_award_to winner
+  end
+
+  def award
+    return nil unless winner?
+    game.awards.find_by(winner_id: winner_id)
+  end
+
+  def to_param = url_hash
 
   private
 
@@ -25,4 +44,6 @@ class Player < ApplicationRecord
 
     Player.find_by(field => hash) ? unique_url_hash(field) : hash
   end
+
+  def winner_id = game.winners.find_by(user_id: user.id).id
 end
