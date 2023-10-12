@@ -32,6 +32,7 @@
       <%= form.fields_for :awards do |awards_form| %>
         <%=awards_form.label :title, '賞品名称' %>
         <%= awards_form.text_field :title, required: true %>
+        <%= awards_form.hidden_field :order_number %>
       <% end %>
     </p>
     <p>
