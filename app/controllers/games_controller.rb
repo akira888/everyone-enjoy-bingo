@@ -82,7 +82,7 @@ class GamesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def game_params
       game_attributes = %i[title max_winners max_players entry_period_minutes random_awards need_bingo_lines]
-      awards_attributes = %i[title]
+      awards_attributes = %i[title order_number]
       params.require(:game).permit(game_attributes, awards_attributes: awards_attributes)
     end
 end
