@@ -2,7 +2,6 @@
   <% if game.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
-
       <ul>
         <% game.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,7 +9,8 @@
       </ul>
     </div>
   <% end %>
-  <div class="items-center">
+  <div class="flex-col">
+    <h2 class="block width-full">ゲームの詳細を入力しましょう</h2>
     <p class="">
       <%=form.label :title, "ゲームタイトル" %>
       <%=form.text_field :title, required: true %>
@@ -19,22 +19,25 @@
       <%=form.label :max_players, "何名でプレイしますか？" %>
       <%=form.number_field :max_players, in: 1..100 %>人
     </p>
-    <p>
-      <%=form.label :need_bingo_lines, "何本ラインを揃えたら賞品がもらえますか？" %>
-      <%=form.number_field :need_bingo_lines, in: 1..12 %>本
-    </p>
-    <p>
-      <%=form.label :max_winners, "賞品をもらえる人数は何人にしますか？" %>
-      <%=form.number_field :max_winners, in: 1..10 %>人
-    </p>
-    <h2 class="block">人数分の賞品を登録しましょう</h2>
-    <p>
-      <%= form.fields_for :awards do |awards_form| %>
-        <%=awards_form.label :title, '賞品名称' %>
-        <%= awards_form.text_field :title, required: true %>
-        <%= awards_form.hidden_field :order_number %>
-      <% end %>
-    </p>
+    <div class="awards" data-controller="award form">
+      <h3>勝利条件の設定</h3>
+      <p>
+        <%=form.label :need_bingo_lines, "何本ラインを揃えたら賞品がもらえますか？" %>
+        <%=form.number_field :need_bingo_lines, in: 1..12 %>本
+      </p>
+      <p>
+        <%=form.label :max_winners, "賞品をもらえる人数は何人にしますか？" %>
+        <%=form.number_field :max_winners, in: 1..10, data: {action: "form#adjustInputNumber award#changeInputList"}, min:1, max:10 %>人
+      </p>
+      <h2 class="block">人数分の賞品を登録しましょう</h2>
+        <%= form.fields_for :awards do |awards_form| %>
+          <p class="awards-form" data-award-target="awardForm">
+            <%= awards_form.label :title, '賞品名称' %>
+            <%= awards_form.text_field :title, required: true %>
+            <%= awards_form.hidden_field :order_number %>
+          </p>
+        <% end %>
+    </div>
     <p>
       <%=form.label :entry_period_minutes, "開始までの制限時間を決めましょう" %>
       <%=form.number_field :entry_period_minutes, required: true, in: 1..30 %>分間募集する
