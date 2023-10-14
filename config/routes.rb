@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   get "entry/:game_players_url_hash", to: 'players#new', as: 'players_entry'
 
   resources :players, param: :url_hash, only: %i[show new create] do
-    resource :card, only: %i[show update] do
+    resource :card, only: %i[update] do
       member do
-        get :playing, to: 'cards#edit'
+        get :playing, to: 'cards#show'
       end
     end
   end
