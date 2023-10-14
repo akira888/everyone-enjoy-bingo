@@ -1,8 +1,30 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl"><%= @player.user.name %>さんのビンゴカードです！</h1>
+  <% if @card.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+        <% @card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div id="card" class="grid grid-cols-5 gap-4">
+    <div class="head">B</div>
+    <div class="head">I</div>
+    <div class="head">N</div>
+    <div class="head">G</div>
+    <div class="head">O</div>
+    <% (0..4).each do |index| %>
+      <%= numbers_cell :b, @card.numbers["b"][index], player_card_path(@player), @emit_numbers %>
+      <%= numbers_cell :i, @card.numbers["i"][index], player_card_path(@player), @emit_numbers %>
+      <%= numbers_cell :n, @card.numbers["n"][index], player_card_path(@player), @emit_numbers %>
+      <%= numbers_cell :g, @card.numbers["g"][index], player_card_path(@player), @emit_numbers %>
+      <%= numbers_cell :o, @card.numbers["o"][index], player_card_path(@player), @emit_numbers %>
     <% end %>
-    <%= render @card %>
   </div>
+  <h2 class="contents text-2xl w-full">今までに出た数字はこちら!!</h2>
+  <%= render 'shared/emit_numbers', game_logs: @game_logs %>
 </div>

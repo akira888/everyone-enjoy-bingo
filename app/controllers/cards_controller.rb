@@ -2,13 +2,10 @@ class CardsController < ApplicationController
   before_action :set_players_card
   before_action :if_game_finished
 
-  # GET /players/h3t5ij/card
-  def show
-  end
-
   # GET /players/h3t5ij/card/playing
-  def edit
-    @emit_numbers = @player.game.game_logs.emit_numbers
+  def show
+    @game_logs = @player.game.game_logs.recent
+    @emit_numbers = @game_logs.emit_numbers
   end
 
   # PATCH/PUT /players/h3t5ij/card
@@ -24,8 +21,8 @@ class CardsController < ApplicationController
 
       redirect_to playing_player_card_path(@player), notice: "Card was successfully updated.", status: :see_other
     else
-      @emit_numbers = @player.game.game_logs.emit_numbers
-      render :edit, status: :unprocessable_entity
+      @game_logs = @player.game.game_logs
+      render :show, status: :unprocessable_entity
     end
   end
 
