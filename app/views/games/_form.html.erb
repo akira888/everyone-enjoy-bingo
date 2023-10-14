@@ -19,7 +19,7 @@
       <%=form.label :max_players, "何名でプレイしますか？" %>
       <%=form.number_field :max_players, in: 1..100 %>人
     </p>
-    <div class="awards" data-controller="award form">
+    <div class="awards" data-controller="award form" data-award-hidden-class="hidden">
       <h3>勝利条件の設定</h3>
       <p>
         <%=form.label :need_bingo_lines, "何本ラインを揃えたら賞品がもらえますか？" %>
@@ -35,6 +35,7 @@
             <%= awards_form.label :title, '賞品名称' %>
             <%= awards_form.text_field :title, required: true %>
             <%= awards_form.hidden_field :order_number %>
+            <%= awards_form.hidden_field :_destroy, value: 0 %>
           </p>
         <% end %>
     </div>
