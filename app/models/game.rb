@@ -73,6 +73,14 @@ class Game < ApplicationRecord
     Time.zone.at(finished_at - started_at)
   end
 
+  def emit_number_channel
+    "emit-number-#{to_param}"
+  end
+
+  def state_channel
+    "state-#{to_param}"
+  end
+
   private
 
   def set_url_hashes
