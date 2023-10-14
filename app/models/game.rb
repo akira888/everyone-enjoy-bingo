@@ -8,7 +8,7 @@ class Game < ApplicationRecord
   has_many :cards, through: :players
   has_many :winners, dependent: :destroy
 
-  accepts_nested_attributes_for :awards
+  accepts_nested_attributes_for :awards, allow_destroy: true
 
   before_validation :set_url_hashes, on: :create
 
