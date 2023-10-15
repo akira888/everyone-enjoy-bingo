@@ -1,3 +1,4 @@
+<%= turbo_stream_from @player.game.state_channel %>
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto" id="player-content">
     <%= render 'please_wait' if @player.game.entry? %>

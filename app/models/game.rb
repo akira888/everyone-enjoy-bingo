@@ -34,7 +34,7 @@ class Game < ApplicationRecord
     end
 
     event :start, before: -> { self.started_at = Time.current } do
-      transitions from: :entry, to: :playing
+      transitions from: :entry, to: :playing, success: -> { broadcast_update_to state_channel, target: "player-content", partial: "shared/reload" }
     end
 
     event :finish, before: -> { self.finished_at = Time.current } do
