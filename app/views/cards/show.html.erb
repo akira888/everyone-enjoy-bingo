@@ -1,5 +1,6 @@
 <%= turbo_stream_from @player.game.emit_number_channel %>
-<div class="mx-auto md:w-2/3 w-full">
+<%= turbo_stream_from @player.game.state_channel %>
+<div class="mx-auto md:w-2/3 w-full" id="main-content">
   <h1 class="font-bold text-4xl"><%= @player.user.name %>さんのビンゴカードです！</h1>
   <% if @card.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
