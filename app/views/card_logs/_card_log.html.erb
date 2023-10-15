@@ -1,5 +1,5 @@
 <div class="logs">
-  <%= card_log.card.player.user.name %>さんが <span><%= card_log.action %></span>になりました！
+  <%= card_log.card.player.user.name %>さんが <span><%= t card_log.action %></span>になりました！
   <% if card_log.card.player.win? %>
     <%= card_log.card.player.user.name %>さんは勝ち抜けました＼(^o^)／
   <% end %>
