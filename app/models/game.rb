@@ -81,6 +81,10 @@ class Game < ApplicationRecord
     "state-#{to_param}"
   end
 
+  def bingo_log_channel
+    "bingo-log-#{to_param}"
+  end
+
   private
 
   def set_url_hashes
