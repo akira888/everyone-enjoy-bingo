@@ -18,11 +18,11 @@ class Player < ApplicationRecord
     game.winners.exists?(user_id: user.id)
   end
 
-  # 少しイレギュラーなことをしているので後でサービスクラスなどに移植する
+  # 後でサービスクラスなどに移植する
   def win!
     winner = game.winners.build(user_id: user.id)
     winner.save!
-    # 一旦即時付与する
+    # 即時付与する
     game.present_award_to winner
   end
 

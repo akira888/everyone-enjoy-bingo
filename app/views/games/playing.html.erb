@@ -7,8 +7,8 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
     <h1 class="font-bold text-4xl">「<%= @game.title %>」開催中！</h1>
-    <p>主催者がビンゴマシンを回していきます。
-    参加者の方はお手元のビンゴカードをご覧頂き、出た数字と同じ物があれば、その数字をクリックしてください。</p>
+    <p>ビンゴマシンを回そう＼(^o^)／
+    </p>
     <div id="machine">
       <%= link_to 'ビンゴを回す！', play_game_path(@game), data: { turbo_method: "patch" }, class: "ml-2 rounded-lg py-3 px-5 bg-yellow-100 inline-block font-medium" %>
     </div>
