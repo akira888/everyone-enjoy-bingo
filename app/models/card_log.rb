@@ -6,5 +6,5 @@ class CardLog < ApplicationRecord
 
   after_create_commit -> { broadcast_prepend_to card.game.bingo_log_channel, target: "bingo-log" }
 
-  enum action: { bingo: :bingo, one_left: :one_left }
+  enum action: { bingo: 'bingo', one_left: 'one_left' }
 end
