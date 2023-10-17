@@ -1,5 +1,7 @@
 <%= turbo_stream_from @game.bingo_log_channel %>
-<div class="mx-auto md:w-2/3 w-full flex">
+<%= turbo_stream_from @game.state_channel %>
+
+<div class="mx-auto md:w-2/3 w-full flex" id="main-content">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
