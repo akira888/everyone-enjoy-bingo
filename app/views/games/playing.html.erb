@@ -15,7 +15,17 @@
     <h2>ゲームの状況</h2>
     <h3>速報</h3>
     <div id="bingo-log"></div>
-    <%# TODO 参加者情報を置く %>
+    <h3>ルール</h3>
+    <div id="game-rule">
+      <p>勝利条件: ビンゴを<%= @game.need_bingo_lines %>本作る</p>
+      <p>勝利者人数: <%= @game.max_winners %>人まで賞品をもらえます！(^^)</p>
+    </div>
+    <h3>参加者情報</h3>
+    <div id="player-info">
+      <p>参加人数: <%= @game.players.size %>人</p>
+      <p>リーチになった本数: <%= @game.card_logs.one_left_count %>本</p>
+      <p>ビンゴになった本数: <%= @game.card_logs.bingo_count %>本</p>
+    </div>
     <h2 class="contents text-2xl w-full">今までに出た数字はこちら!!</h2>
     <%= render 'shared/emit_numbers', game_logs: @game.game_logs %>
   </div>
