@@ -2,3 +2,4 @@ web: bin/rails server -p 3000
 css: bin/rails tailwindcss:watch
 redis: redis-server /opt/homebrew/etc/redis.conf
 css: bun run build:css --watch
+js: yarn build --watch
