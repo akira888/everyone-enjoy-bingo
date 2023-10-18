@@ -2,19 +2,14 @@ module CardLineCountable
   def count_marked_lines(card_numbers)
     @new_bingo_lines = 0
     @new_one_left_lines = 0
-    count = 0
-    count_marks_by_horizontal(card_numbers.values) do |marks|
+
+    counter = Proc.new do |marks|
       @new_one_left_lines += 1 if marks == 4
       @new_bingo_lines += 1 if marks == 5
     end
-    count_marks_by_vertical(card_numbers.values) do |marks|
-      @new_one_left_lines += 1 if marks == 4
-      @new_bingo_lines += 1 if marks == 5
-    end
-    count_mark_by_diagonal(card_numbers) do |marks|
-      @new_one_left_lines += 1 if marks == 4
-      @new_bingo_lines += 1 if marks == 5
-    end
+    count_marks_by_horizontal(card_numbers.values, &counter)
+    count_marks_by_vertical(card_numbers.values, &counter)
+    count_mark_by_diagonal(card_numbers, &counter)
   end
 
   def new_bingo_lines = @new_bingo_lines
@@ -36,6 +31,7 @@ module CardLineCountable
     end
   end
 
+  # 対角線をカウントする
   def count_mark_by_diagonal(matrix)
     [
       [matrix["b"][0], matrix["i"][1], matrix["n"][2], matrix["g"][3], matrix["o"][4]],
