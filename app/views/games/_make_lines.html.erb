@@ -1,2 +1,3 @@
 <p>リーチになった本数: <%= game.card_logs.one_left_count %>本</p>
 <p>ビンゴになった本数: <%= game.card_logs.bingo_count %>本</p>
+<p>賞品をGETできる人数： あと<%= game.max_winners - game.winners.count %>名！</p>
