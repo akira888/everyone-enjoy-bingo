@@ -3,6 +3,7 @@
   "private": "true",
   "dependencies": {
     "autoprefixer": "latest",
+    "daisyui": "^3.9.3",
     "esbuild": "^0.19.5",
     "postcss": "latest",
     "tailwindcss": "latest"
