@@ -19,6 +19,8 @@ Hotwire
 daisyUI
 データベースアプリケーション
 MySQL
+非同期通信用
+Redis
 
 ## 開発環境について
 ローカルを想定。

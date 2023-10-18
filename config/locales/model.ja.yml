@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      game: ビンゴゲーム
+      card: ビンゴカード
+      card_log: ビンゴカードログ
+    attributes:
+      game:
+        status: 進行状況
+      game/status:
+          before_entry: 受付を開始していません
+          entry: 受付中
+          playing: 進行中
+          finished: 終了
+      card_log:
+        action: 記録したアクション
+      card_log/action:
+          bingo: ビンゴ
+          one_left: リーチ

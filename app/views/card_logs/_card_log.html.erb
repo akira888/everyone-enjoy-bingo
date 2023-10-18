@@ -1,0 +1,6 @@
+<div class="logs">
+  <%= card_log.card.player.user.name %>さんが <span><%= card_log.human_attribute_enum(:action) %></span>になりました！
+  <% if card_log.card.player.winner? %>
+    <%= card_log.card.player.user.name %>さんは勝ち抜けました＼(^o^)／
+  <% end %>
+</div>

@@ -1,5 +1,5 @@
 class Card < ApplicationRecord
-  include BingoCallable
+  include CardLineCountable
 
   belongs_to :player
   belongs_to :game, inverse_of: :cards
@@ -20,7 +20,7 @@ class Card < ApplicationRecord
 
     numbers[key].map! { |v| v == number ? 'x' : v }
 
-    save && count_up_bingo
+    save && count_up_marked_lines
   end
 
   def has_number?(key, number)
@@ -57,11 +57,24 @@ class Card < ApplicationRecord
     end
   end
 
+  def count_up_marked_lines
+    count_marked_lines(numbers)
+    count_up_bingo
+    count_up_one_left
+  end
+
   def count_up_bingo
-    count = count_bingo_lines(numbers)
-    return true if count == bingo_lines
-    (count - bingo_lines).times { card_logs.build(action: :bingo) }
-    update(bingo_lines: count)
+    return true if new_bingo_lines == bingo_lines
+    (new_bingo_lines - bingo_lines).times { card_logs.build(action: :bingo) }
+    update(bingo_lines: new_bingo_lines)
+  end
+
+  def count_up_one_left
+    return true if new_one_left_lines == one_left_lines
+    if new_one_left_lines > one_left_lines
+      (new_one_left_lines - one_left_lines).times { card_logs.build(action: :one_left) }
+    end
+    update(one_left_lines: new_one_left_lines)
   end
 
   def emit_number?(number)

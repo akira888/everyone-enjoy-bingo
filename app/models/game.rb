@@ -6,6 +6,7 @@ class Game < ApplicationRecord
   has_many :game_logs, dependent: :destroy
   has_many :players, dependent: :destroy
   has_many :cards, through: :players
+  has_many :card_logs, through: :cards
   has_many :winners, dependent: :destroy
 
   accepts_nested_attributes_for :awards, allow_destroy: true
@@ -79,6 +80,10 @@ class Game < ApplicationRecord
 
   def state_channel
     "state-#{to_param}"
+  end
+
+  def bingo_log_channel
+    "bingo-log-#{to_param}"
   end
 
   private

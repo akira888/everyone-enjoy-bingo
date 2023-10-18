@@ -3,12 +3,12 @@
   <p class="mb-2">「<%= @player.game.title %>」でのあなたの成績はこちらです^^</p>
   <div class="scores">
     <div class="score">
-      <p class="text-2xl mb-2">ビンゴになった本数</p>
+      <p class="text-2xl mb-2">ビンゴできた本数</p>
       <p class="text-4xl"><%= @card.card_logs.bingo_count %>本</p>
     </div>
     <div class="score">
       <p class="text-2xl mb-2">リーチになった回数</p>
-      <p class="text-4xl"><%= @card.card_logs.one_left_count %>本</p>
+      <p class="text-4xl"><%= @card.card_logs.one_left_count %>回</p>
     </div>
     <div class="score">
       <p class="text-2xl mb-2">ゲットした賞品</p>
