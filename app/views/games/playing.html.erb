@@ -23,8 +23,9 @@
     <h3>参加者情報</h3>
     <div id="player-info">
       <p>参加人数: <%= @game.players.size %>人</p>
-      <p>リーチになった本数: <%= @game.card_logs.one_left_count %>本</p>
-      <p>ビンゴになった本数: <%= @game.card_logs.bingo_count %>本</p>
+      <div id="make-lines">
+        <%= render 'games/make_lines', game: @game %>
+      </div>
     </div>
     <h2 class="contents text-2xl w-full">今までに出た数字はこちら!!</h2>
     <%= render 'shared/emit_numbers', game_logs: @game.game_logs %>
