@@ -2,7 +2,7 @@
   <%= turbo_frame_tag 'game_main', data: { turbo_action: :advance } do %>
     <div class="flex flex-col justify-between items-center">
       <h1 class="font-bold text-7xl mb-14 tracking-widest"><%= t 'title' %></h1>
-      <%= link_to 'ニューゲーム', new_game_path, class: "btn btn-primary" %>
+      <%= link_to 'ニューゲーム', new_game_path, class: "btn btn-primary tracking-wider text-xl" %>
     </div>
     <%= render @games if Rails.env.development? %>
   <% end %>
