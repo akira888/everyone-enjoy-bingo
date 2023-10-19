@@ -2,6 +2,7 @@
   "name": "app",
   "private": "true",
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "autoprefixer": "latest",
     "daisyui": "^3.9.3",
     "esbuild": "^0.19.5",
