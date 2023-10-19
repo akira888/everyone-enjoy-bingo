@@ -1,7 +1,8 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">ゲームのルールを定めましょう</h1>
-
-  <%= render "form", game: @game %>
-
-  <%= link_to 'やっぱりやめる', games_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<div class="w-full">
+  <%= turbo_frame_tag 'game_main' do %>
+    <div class="flex flex-col justify-between items-center">
+    <%= render "form", game: @game %>
+    <%= link_to 'スタート画面にもどる', games_path, class: "btn btn-secondary btn-wide" %>
+    </div>
+  <% end %>
 </div>

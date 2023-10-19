@@ -1,3 +1,5 @@
+<h1 class="font-bold text-4xl">ルール設定</h1>
+
 <%= form_with(model: game, class: "contents") do |form| %>
   <% if game.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
@@ -9,50 +11,61 @@
       </ul>
     </div>
   <% end %>
-  <div class="flex-col">
-    <h2 class="block width-full">ゲームの詳細を入力しましょう</h2>
-    <p class="">
-      <%=form.label :title, "ゲームタイトル" %>
-      <%=form.text_field :title, required: true %>
-    </p>
-    <p>
-      <%=form.label :max_players, "何名でプレイしますか？" %>
-      <%=form.number_field :max_players, in: 1..100 %>人
-    </p>
-    <div class="awards" data-controller="award form" data-award-hidden-class="hidden">
-      <h3>勝利条件の設定</h3>
+  <fieldset class="flex-col prose mt-2">
+
+    <div class="form-control">
       <p>
-        <%=form.label :need_bingo_lines, "何本ラインを揃えたら賞品がもらえますか？" %>
-        <%=form.number_field :need_bingo_lines, in: 1..12 %>本
+        <%=form.label :title, class: "label" do %>
+          <span class="label-text text-xl">ゲームのタイトルは?</span>
+        <% end %>
+        <%=form.text_field :title, class: "input input-bordered input-md w-full max-w-xs bg-white", required: true, placeholder: "みんなのビンゴ" %>
       </p>
-      <p>
-        <%=form.label :max_winners, "賞品をもらえる人数は何人にしますか？" %>
-        <%=form.number_field :max_winners, in: 1..10, data: {action: "form#adjustInputNumber award#changeInputList"}, min:1, max:10 %>人
+    </div>
+    <div class="form-control not-prose" data-controller="form">
+      <p class="mb-4">
+        <%= form.label :max_players, class: "label" do %>
+          <span class="label-text text-xl">何名でプレイしますか?</span>
+        <% end %>
+        <%= form.number_field :max_players, in: 1..100, min:1, max: 100, class: "input input-bordered input-sm bg-white w-16 inline", data: {action: "form#adjustInputNumber"} %>人 <span>(最大100人)</span>
       </p>
-      <h2 class="block">人数分の賞品を登録しましょう</h2>
+    </div>
+    <div class="awards form-control not-prose" data-controller="award form" data-award-hidden-class="hidden">
+      <p class="mb-4">
+        <%= form.label :need_bingo_lines, class: "label" do %>
+          <span class="label-text text-xl">ビンゴを何ライン揃えたら賞品がもらえますか?</span>
+        <% end %>
+        <%= form.number_field :need_bingo_lines, in: 1..10, min:1, max:10, class: "input input-bordered input-sm bg-white w-16 inline", data: {action: "form#adjustInputNumber"} %>ライン <spa>(最大10ライン)</spa>
+      </p>
+      <p class="mb-4">
+        <%= form.label :max_winners, class: "label" do %>
+          <span class="label-text text-xl">賞品をもらえる人数は何人にしますか?</span>
+        <% end %>
+        <%= form.number_field :max_winners, in: 1..10, data: {action: "form#adjustInputNumber award#changeInputList"}, min:1, max:10, class: "input input-bordered input-sm bg-white w-16 inline" %>人 <span>(最大10人)</span>
+      </p>
         <%= form.fields_for :awards do |awards_form| %>
-          <p class="awards-form" data-award-target="awardForm">
-            <%= awards_form.label :title, '賞品名称' %>
-            <%= awards_form.text_field :title, required: true %>
+          <p class="awards-form mb-2" data-award-target="awardForm">
+            <%= awards_form.label :title, class: "label" do %>
+              <span class="label-text text-xl">賞品<%= awards_form.object.order_number.to_s %></span>
+            <% end %>
+            <%= awards_form.text_field :title, required: true, class: "input input-bordered input-md bg-white", placeholder: "賞品名を登録！" %>
             <%= awards_form.hidden_field :order_number %>
             <%= awards_form.hidden_field :_destroy, value: 0 %>
           </p>
         <% end %>
     </div>
-    <p>
-      <%=form.label :entry_period_minutes, "開始までの制限時間を決めましょう" %>
-      <%=form.number_field :entry_period_minutes, required: true, in: 1..30 %>分間募集する
-    </p>
-    <h2>賞品は先着順ですか？</h2>
-    <p>
-      <%=form.radio_button :random_awards, false %>
-      <%=form.label :random_awards_false, "はい、先着順です" %></p>
-    <p>
-      <%=form.radio_button :random_awards, true %>
-      <%=form.label :random_awards_true, "いいえ、抽選です" %>
-    </p>
-  </div>
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <h3 class="my-2">賞品の受けとりは先着順ですか？</h3>
+    <div class="form-control">
+      <label class="label cursor-pointer w-48">
+        <span class="label-text text-xl">はい、先着順です</span>
+        <%= form.radio_button :random_awards, false, class: "radio radio-info" %>
+      </label>
+      <label class="label cursor-pointer w-48">
+        <span class="label-text text-xl">いいえ、抽選です</span>
+        <%= form.radio_button :random_awards, true, class: "radio radio-info" %>
+      </label>
+    </div>
+  </fieldset>
+  <div class="form-control">
+    <%= form.submit "セーブする", class: "btn btn-primary btn-wide my-5" %>
   </div>
 <% end %>
