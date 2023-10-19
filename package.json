@@ -7,7 +7,8 @@
     "daisyui": "^3.9.3",
     "esbuild": "^0.19.5",
     "postcss": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "turbo": "^1.10.16"
   },
   "scripts": {
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
