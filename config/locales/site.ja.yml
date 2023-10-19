@@ -2,3 +2,5 @@
 ja:
   title: 'みんなのビンゴ'
   logo: 'みんなのビンゴ'
+  form:
+    submit: 'セーブする'
