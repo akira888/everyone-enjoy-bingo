@@ -1,6 +1,9 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl mb-5">主催者情報を登録します</h1>
-  <p class="text-gray-600 my-2">主催者情報を登録することで、ゲーム終了後にも結果を確認しに戻ってくることができます。</p>
-  <%= render "form", game: @game, owner: @owner %>
-
+<div class="w-full">
+  <div class="flex flex-col justify-between items-center">
+  <h1 class="font-bold text-4xl mb-3">主催者情報を保存します</h1>
+  <%= turbo_frame_tag 'owner_main', data: { turbo_action: :advance } do %>
+    <p class="text-neutral mb-4">主催者情報を登録することで、ゲーム終了後にも結果を確認しに戻ってくることができます。(*未実装)</p>
+    <%= render "form", game: @game, owner: @owner %>
+  <% end %>
+  </div>
 </div>
