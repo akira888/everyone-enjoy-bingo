@@ -87,9 +87,6 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    importmap-rails (1.2.1)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.6.0)
     irb (1.8.1)
       rdoc
@@ -208,7 +205,6 @@ DEPENDENCIES
   chunky_png
   cssbundling-rails
   debug
-  importmap-rails
   jsbundling-rails
   mysql2 (~> 0.5)
   puma (~> 5.0)
