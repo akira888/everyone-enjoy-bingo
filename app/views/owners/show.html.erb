@@ -1,6 +1,6 @@
 <div class="w-full">
   <div class="flex flex-col justify-between items-center">
-    <%= turbo_frame_tag 'owner_main', data: { turbo_action: :advance } do %>
+    <%= turbo_frame_tag 'game_main', data: { turbo_action: :advance } do %>
       <h2 class="font-bold text-3xl">ゲームを始める準備が整いました！</h2>
       <div class="text-center my-5">
         <%= link_to 'まずは参加者を募りましょう', waiting_game_path(@game), data: {turbo_method: :patch},  class: "btn btn-accent text-xl" %>
