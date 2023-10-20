@@ -1,5 +1,4 @@
-<h2 class="text-4xl mb-5">ゲームが始まっている！</h2>
-<div class="flex flex-col items-center justify-center mt-5">
-  <p class="mb-2">「<%= @player.game.title %>」に今すぐ参加しましょう！</p>
-  <%= link_to "ビンゴに参加する！", playing_player_card_path(@player), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<h1 class="text-4xl mb-5">ゲームが開始されました！</h1>
+<div class="flex-col items-center justify-center text-center mt-5">
+  <%= link_to "「#{@player.game.title}」に参加する！", playing_player_card_path(@player), class: "link link-success text-2xl", data: { turbo: false } %>
 </div>

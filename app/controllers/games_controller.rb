@@ -31,7 +31,7 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
-      redirect_to new_game_owner_path(@game), notice: "ゲームの登録が完了しました！次は主催者情報を登録します、", status: :see_other
+      redirect_to new_game_owner_path(@game), status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
@@ -69,8 +69,7 @@ class GamesController < ApplicationController
     if @game.over?
       @game.finish!
     end
-
-    redirect_to game_path(@game), status: :see_other, notice: "こちらの数字がでました！" + @machine.emit_number.to_s
+    # redirect_to game_path(@game), status: :see_other, notice: "こちらの数字がでました！" + @machine.emit_number.to_s
   end
 
   private

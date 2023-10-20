@@ -1,23 +1,28 @@
-<h1 class="display font-bold text-4xl">「<%= @game.title %>」は終了しました！</h1>
-
-<div class="flex items-center justify-center mt-5">
-  <p class="mb-2">ゲーム情報</p>
-  <div class="game-details">
-    <div class="detail">
-      <p class="text-2xl mb-2">Winners＼(^o^)／</p>
-      <% @game.winners.each do |winner| %>
-        <p class="text-xl">お名前： <%= winner.user.name %>さん</p>
-        <p class="text-xl">獲得賞品： <%= winner.award&.title %></p>
-      <% end %>
-    </div>
-    <div class="detail">
-      <p class="text-2xl mb-2">参加者数</p>
-      <p class="text-xl"><%= @game.players.count %>人</p>
-    </div>
-    <div class="detail">
-      <p class="text-2xl mb-2">総プレイ時間</p>
-      <p class="text-xl"><%= @game.play_time.strftime "%H時間%M分" %></p>
+<div class="w-full">
+  <div class="flex flex-col justify-between items-center text-center">
+    <h1 class="display font-bold text-2xl">「<%= @game.title %>」は終了しました！</h1>
+    <div class="game-details">
+      <div class="detail my-4">
+        <h2 class="text-2xl mb-2">勝利者たち＼(^o^)／</h2>
+        <% @game.winners.each do |winner| %>
+          <div class="card w-96 bg-yellow-100 shadow-xl">
+            <div class="card-body">
+              <h3 class="card-title"><%= winner.user.name %>さん</h3>
+              <p class="text-xl">獲得賞品： <%= winner.award&.title %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="detail">
+        <p class="text-2xl mb-2">参加者数</p>
+        <p class="text-xl"><%= @game.players.count %>人</p>
+      </div>
+      <div class="detail">
+        <p class="text-2xl mb-2">総プレイ時間</p>
+        <p class="text-xl"><%= @game.play_time.strftime "%H時間%M分" %></p>
+      </div>
     </div>
   </div>
 </div>
+
 

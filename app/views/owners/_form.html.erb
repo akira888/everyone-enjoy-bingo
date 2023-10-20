@@ -10,18 +10,22 @@
       </ul>
     </div>
   <% end %>
-  <div class="items-center">
-    <h2>オーナーID(編集不可)</h2>
-    <p class="mb-2">
-      <%= form.text_field :name, readonly: true %>
-    </p>
-    <p class="mb-2">
-      <%= form.label :password, 'ふっかつのじゅもん（編集可、20文字まで', class: 'block' %>
-      <%= form.text_field :password, required: true, max_length: 20, class: 'w-full' %>
-    </p>
-  </div>
+  <fieldset class="flex-col prose mt-2">
+    <div class="form-control">
+        <%= form.label :name, class: "label" do %>
+          <span class="label-text text-xl">オーナーID(編集不可)</span>
+        <% end %>
+        <%= form.text_field :name, readonly: true, class: "input input-xl" %>
+    </div>
+    <div class="form-control">
+        <%= form.label :password, class: "label" do %>
+          <span class="label-text text-xl">ふっかつのじゅもん（編集可、20文字まで)</span>
+        <% end %>
+        <%= form.text_field :password, required: true, max_length: 20, class: 'input input-xl bg-white w-full' %>
+    </div>
+  </fieldset>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="form-control">
+    <%= form.submit t("form.submit"), class: "btn btn-primary btn-wide my-5" %>
   </div>
 <% end %>

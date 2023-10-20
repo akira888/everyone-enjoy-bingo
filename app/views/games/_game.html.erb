@@ -6,8 +6,8 @@
     <%= content_tag :h4, class: "text-3" do %>
       進行状況: <%= game.status %>
     <% end %>
-    <%= link_to "Show this game", game, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this game', edit_game_path(game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this game", game, class: "btn btn-accent", data: {turbo: false} %>
+    <%= link_to 'Edit this game', edit_game_path(game), class: "btn btn-secondary" %>
     <hr class="mt-6">
   <% end %>
 </div>

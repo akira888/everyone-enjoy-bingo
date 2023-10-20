@@ -25,6 +25,7 @@ export default class extends Controller {
           newDestroy = newElement.querySelector(this.destroySelector);
 
         newLabel.htmlFor = newLabel.htmlFor.replace(/\d+/, i)
+        newLabel.innerHTML = newLabel.innerHTML.replace(/\d+/, i+1)
         newTitle.id = newTitle.id.replace(/\d+/, i)
         newTitle.name = newTitle.name.replace(/\d+/, i)
         newTitle.value = ""

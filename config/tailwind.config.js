@@ -7,6 +7,9 @@ module.exports = {
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}'
   ],
+  daisyui: {
+    themes: ["lemonade", "cupcake", "pastel"],
+  },
   theme: {
     extend: {
       fontFamily: {
@@ -19,5 +22,6 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
+    require('daisyui'),
   ]
 }

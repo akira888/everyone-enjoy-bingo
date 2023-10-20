@@ -1,33 +1,27 @@
 <%= turbo_stream_from @player.game.emit_number_channel %>
 <%= turbo_stream_from @player.game.state_channel %>
-<div class="mx-auto md:w-2/3 w-full" id="main-content">
-  <h1 class="font-bold text-4xl"><%= @player.user.name %>さんのビンゴカードです！</h1>
-  <% if @card.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
-
-      <ul>
-        <% @card.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<div class="w-full" id="main-content">
+  <div class="flex flex-col items-center">
+    <h1 class="font-bold text-4xl"><%= @player.user.name %>さんのビンゴカードです！</h1>
+    <%= turbo_frame_tag 'player_main', data: { turbo_action: :advance } do %>
+      <p>出た数字と同じ物は押せるようになっています。どんどん押しましょう！</p>
+      <div id="card" class="grid grid-cols-5 gap-4 w-96 my-5 mx-auto">
+        <div class="text-center text-bold text-xl w-12">B</div>
+        <div class="text-center text-bold text-xl w-12">I</div>
+        <div class="text-center text-bold text-xl w-12">N</div>
+        <div class="text-center text-bold text-xl w-12">G</div>
+        <div class="text-center text-bold text-xl w-12">O</div>
+        <% (0..4).each do |index| %>
+          <%= numbers_cell :b, @card.numbers["b"][index], player_card_path(@player), @emit_numbers %>
+          <%= numbers_cell :i, @card.numbers["i"][index], player_card_path(@player), @emit_numbers %>
+          <%= numbers_cell :n, @card.numbers["n"][index], player_card_path(@player), @emit_numbers %>
+          <%= numbers_cell :g, @card.numbers["g"][index], player_card_path(@player), @emit_numbers %>
+          <%= numbers_cell :o, @card.numbers["o"][index], player_card_path(@player), @emit_numbers %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <p>出た数字と同じ物があれば、その数字をクリックしてください。</p>
-  <div id="card" class="grid grid-cols-5 gap-4">
-    <div class="head">B</div>
-    <div class="head">I</div>
-    <div class="head">N</div>
-    <div class="head">G</div>
-    <div class="head">O</div>
-    <% (0..4).each do |index| %>
-      <%= numbers_cell :b, @card.numbers["b"][index], player_card_path(@player), @emit_numbers %>
-      <%= numbers_cell :i, @card.numbers["i"][index], player_card_path(@player), @emit_numbers %>
-      <%= numbers_cell :n, @card.numbers["n"][index], player_card_path(@player), @emit_numbers %>
-      <%= numbers_cell :g, @card.numbers["g"][index], player_card_path(@player), @emit_numbers %>
-      <%= numbers_cell :o, @card.numbers["o"][index], player_card_path(@player), @emit_numbers %>
+        <%= link_to '#', player_card_path(@player), class: "hidden", data: {target: "reload"} %>
+      </div>
     <% end %>
+    <h2 class="contents text-2xl w-full">今までに出た数字はこちら!!</h2>
+    <%= render 'shared/emit_numbers', game_logs: @game_logs %>
   </div>
-  <h2 class="contents text-2xl w-full">今までに出た数字はこちら!!</h2>
-  <%= render 'shared/emit_numbers', game_logs: @game_logs %>
 </div>

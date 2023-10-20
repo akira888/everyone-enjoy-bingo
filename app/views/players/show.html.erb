@@ -1,8 +1,10 @@
 <%= turbo_stream_from @player.game.state_channel %>
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto" id="main-content">
+<div class="w-full">
+  <div class="flex flex-col justify-between items-center" id="main-content">
+  <%= turbo_frame_tag 'player_main', data: { turbo_action: :advance } do %>
     <%= render 'please_wait' if @player.game.entry? %>
     <%= render 'let_go_bingo' if @player.game.playing? && ! @player.winner? %>
     <%= render 'score' if @player.game.finished? || @player.winner? %>
+  <% end %>
   </div>
 </div>
