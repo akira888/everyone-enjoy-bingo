@@ -1,33 +1,40 @@
 <%= turbo_stream_from @game.bingo_log_channel %>
 <%= turbo_stream_from @game.state_channel %>
-
-<div class="mx-auto md:w-2/3 w-full flex" id="main-content">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-    <h1 class="font-bold text-4xl">「<%= @game.title %>」開催中！</h1>
-    <p>ビンゴマシンを回そう＼(^o^)／
-    </p>
-    <div id="machine">
-      <%= link_to 'ビンゴを回す！', play_game_path(@game), data: { turbo_method: "patch" }, class: "ml-2 rounded-lg py-3 px-5 bg-yellow-100 inline-block font-medium" %>
-    </div>
-    <h2>ゲームの状況</h2>
-    <h3>速報</h3>
-    <div id="bingo-log"></div>
-    <h3>ルール</h3>
-    <div id="game-rule">
-      <p>勝利条件: ビンゴを<%= @game.need_bingo_lines %>本作る</p>
-      <p>勝利者人数: <%= @game.max_winners %>人まで賞品をもらえます！(^^)</p>
-    </div>
-    <h3>参加者情報</h3>
-    <div id="player-info">
-      <p>参加人数: <%= @game.players.size %>人</p>
-      <div id="make-lines">
-        <%= render 'games/make_lines', game: @game %>
+<%= turbo_stream_from @game.emit_number_channel %>
+<div class="w-full" id="main-content">
+  <div class="flex flex-col justify-between items-center">
+    <%= turbo_frame_tag 'game_main', data: { turbo_action: :advance } do %>
+      <div class="play-area">
+        <h1 class="font-bold text-4xl">「<%= @game.title %>」開催中！</h1>
+        <p class="my-3.5">ビンゴマシンを回そう＼(^o^)／</p>
+        <div id="machine">
+          <%= link_to 'ビンゴを回す！', play_game_path(@game), data: { turbo_method: "patch" }, class: "btn btn-accent text-2xl" %>
+          <span id="now-emitted" class="pl-3 countdown text-4xl">
+            <span style="--value:<%= @game.game_logs.recent.first.emit_number %>;"></span>
+          </span>
+        </div>
+        <div id="number-log" class="my-3.5">
+          <h2 class="contents text-2xl w-full">今までに出た数字はこちら!!</h2>
+          <%= render 'shared/emit_numbers', game_logs: @game.game_logs.recent %>
+        </div>
       </div>
-    </div>
-    <h2 class="contents text-2xl w-full">今までに出た数字はこちら!!</h2>
-    <%= render 'shared/emit_numbers', game_logs: @game.game_logs %>
+      <div class="info-area">
+        <h2>ゲームの状況</h2>
+        <h3>速報</h3>
+        <div id="bingo-log"></div>
+        <h3>ルール</h3>
+        <div id="game-rule">
+          <p>勝利条件: ビンゴを<%= @game.need_bingo_lines %>本作る</p>
+          <p>勝利者人数: <%= @game.max_winners %>人まで賞品をもらえます！(^^)</p>
+        </div>
+        <h3>参加者情報</h3>
+        <div id="player-info">
+          <p>参加人数: <%= @game.players.size %>人</p>
+          <div id="make-lines">
+            <%= render 'games/make_lines', game: @game %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

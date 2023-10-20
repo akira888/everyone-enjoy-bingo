@@ -69,8 +69,7 @@ class GamesController < ApplicationController
     if @game.over?
       @game.finish!
     end
-
-    redirect_to game_path(@game), status: :see_other, notice: "こちらの数字がでました！" + @machine.emit_number.to_s
+    # redirect_to game_path(@game), status: :see_other, notice: "こちらの数字がでました！" + @machine.emit_number.to_s
   end
 
   private
