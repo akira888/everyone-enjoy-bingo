@@ -10,14 +10,15 @@
       </ul>
     </div>
   <% end %>
-  <p>
-    <%= form.fields_for :user do |user_form| %>
-      <%= user_form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= user_form.text_field :name, class: "rounded-lg py-3 px-5 bg-gray-100 w-full", required: true %>
-    <% end %>
-  </p>
+  <fieldset class="flex-col prose my-5">
+    <div class="form-control">
+      <%= form.fields_for :user do |user_form| %>
+        <div class="join w-full">
+          <%= user_form.text_field :name, class: "input input-bordered join-item w-full", placeholder: User.human_attribute_name("name"), required: true %>
+          <%= form.submit value: action_name == 'new' ? '申し込む': '更新する', class: "btn btn-success join-item rounded-r-full" %>
+        </div>
+      <% end %>
+    </div>
+  </fieldset>
   <%= form.hidden_field :game_id, value: game.id %>
-  <div class="inline">
-    <%= form.submit value: action_name == 'new' ? '申し込む': '更新する', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
 <% end %>
