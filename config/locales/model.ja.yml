@@ -4,6 +4,8 @@ ja:
       game: ビンゴゲーム
       card: ビンゴカード
       card_log: ビンゴカードログ
+      owner: 主催者情報
+      player: 参加者情報
     attributes:
       game:
         status: 進行状況
@@ -17,3 +19,6 @@ ja:
       card_log/action:
           bingo: ビンゴ
           one_left: リーチ
+      user:
+          name: お名前
+

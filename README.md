@@ -11,16 +11,18 @@
 - 主催者もビンゴに参加することができます！（別ウィンドウ）
 
 ## spec
-サーバーサイドアプリケーション
-ruby: 
-rails: 
-クライアントサイドアプリケーション
-Hotwire
-daisyUI
-データベースアプリケーション
-MySQL
-非同期通信用
-Redis
+### サーバーサイドアプリケーション
+- ruby: 
+- rails: 
+### クライアントサイドアプリケーション
+- Hotwire(hotwire-rails )
+- daisyUI
+### データベースアプリケーション
+- MySQL
+### 非同期通信用
+- Redis
+### Font
+- ["Yusei Magic"](https://fonts.google.com/specimen/Yusei+Magic)
 
 ## 開発環境について
 ローカルを想定。

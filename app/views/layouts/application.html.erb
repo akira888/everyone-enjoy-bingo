@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="cupcake" lang="ja">
   <head>
-    <title>EveryoneEnjoyBingo</title>
+    <title><%= t 'title' %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
+    <%= stylesheet_link_tag "application", "fonts", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="<%= body_class %>">
+    <header class="navbar bg-base-200">
+      <span class="btn btn-ghost normal-case text-xl"><%= t 'logo' %></span>
+    </header>
+    <main class="container mx-auto mt-16 px-5 flex">
+      <div id="notice"></div>
       <%= yield %>
     </main>
   </body>

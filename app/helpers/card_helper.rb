@@ -6,7 +6,7 @@ module CardHelper
                 method: :patch,
                 params: {card: {number: number, key: key}},
                 disabled: emit_numbers.exclude?(number),
-                class: emit_numbers.include?(number) ? 'emit-numbers': 'numbers'
+                class: %(btn btn-accent w-12 ) + (emit_numbers.include?(number) ? 'emit-numbers': 'numbers')
     end
   end
 end
