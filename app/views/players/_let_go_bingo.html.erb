@@ -1,4 +1,4 @@
 <h1 class="text-4xl mb-5">ゲームが開始されました！</h1>
 <div class="flex-col items-center justify-center text-center mt-5">
-  <%= link_to "「#{@player.game.title}」に参加する！", playing_player_card_path(@player), class: "link link-success text-2xl" %>
+  <%= link_to "「#{@player.game.title}」に参加する！", playing_player_card_path(@player), class: "link link-success text-2xl", data: { turbo: false } %>
 </div>
