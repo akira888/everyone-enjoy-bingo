@@ -1,9 +1,7 @@
 <div class="w-full">
   <div class="flex flex-col justify-between items-center">
-    <%= turbo_frame_tag 'player_main', data: { turbo_action: :advance } do %>
-      <h1 class="font-bold text-4xl mb-3">エントリーフォーム</h1>
-      <p class="notice">こちらでは「<%= @game.title %>」の受付を行っております。参加される場合はお名前の入力をお願いします。</p>
-      <%= render "form", player: @player, game: @game %>
-    <% end %>
+    <h1 class="font-bold text-4xl mb-3">エントリーフォーム</h1>
+    <p class="notice">こちらでは「<%= @game.title %>」の受付を行っております。参加される場合はお名前の入力をお願いします。</p>
+    <%= render "form", player: @player, game: @game %>
   </div>
 </div>

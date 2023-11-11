@@ -1,10 +1,8 @@
 <div class="w-full">
-  <%= turbo_frame_tag 'game_main', data: { turbo_action: :advance } do %>
-    <div class="flex flex-col justify-between items-center text-center">
-      <h2 class="font-bold text-4xl mb-6">ゲームを始める準備は整っています！</h2>
-      <%= link_to 'まずは参加者を募りましょう', waiting_game_path(@game), data: {turbo_method: "patch"},  class: "btn btn-accent text-xl" %>
-      <div class="divider">または</div>
-      <%= link_to 'ゲームの設定を見直す', edit_game_path(@game), class: "btn btn-neutral" %>
-    </div>
-  <% end %>
+  <div class="flex flex-col justify-between items-center text-center">
+    <h2 class="font-bold text-4xl mb-6">ゲームを始める準備は整っています！</h2>
+    <%= link_to 'まずは参加者を募りましょう', waiting_game_path(@game), data: {turbo_method: "patch"},  class: "btn btn-accent text-xl" %>
+    <div class="divider">または</div>
+    <%= link_to 'ゲームの設定を見直す', edit_game_path(@game), class: "btn btn-neutral" %>
+  </div>
 </div>
