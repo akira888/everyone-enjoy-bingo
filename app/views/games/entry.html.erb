@@ -1,15 +1,13 @@
 <div class="w-full">
-  <%= turbo_frame_tag 'game_main', data: { turbo_action: :advance } do %>
-    <div class="flex flex-col justify-between items-center text-center">
-      <h2 class="font-bold text-2xl mb-5">以下の情報を使って、参加者を募集してみましょう</h2>
-      <div class="text-center">
-        <p>ゲーム名：<%= @game.title %></p>
-        <%= image_tag qrcode_tag players_entry_url(@game.players_url_hash) %>
-      </div>
-      <div class="my-5">
-        <p>参加者用URL: <%= link_to players_entry_url(@game.players_url_hash), players_entry_url(@game.players_url_hash), target: '_new_player', class: "link link-primary" %></p>
-      </div>
-      <p><%= link_to 'ゲームを開始する(参加は締め切られます)', start_game_path(@game), data: {turbo_method: :patch}, class: "btn btn-secondary text-xl" %></p>
+  <div class="flex flex-col justify-between items-center text-center">
+    <h2 class="font-bold text-2xl mb-5">以下の情報を使って、参加者を募集してみましょう</h2>
+    <div class="text-center">
+      <p>ゲーム名：<%= @game.title %></p>
+      <%= image_tag qrcode_tag players_entry_url(@game.players_url_hash) %>
     </div>
-  <% end %>
+    <div class="my-5">
+      <p>参加者用URL: <%= link_to players_entry_url(@game.players_url_hash), players_entry_url(@game.players_url_hash), target: '_new_player', class: "link link-primary" %></p>
+    </div>
+    <p><%= link_to 'ゲームを開始する(参加は締め切られます)', start_game_path(@game), data: {turbo_method: :patch}, class: "btn btn-secondary text-xl" %></p>
+  </div>
 </div>
