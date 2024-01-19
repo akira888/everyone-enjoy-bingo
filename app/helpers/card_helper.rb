@@ -1,6 +1,10 @@
 module CardHelper
+  CHECKED_MARK = 'x'.freeze
+
   def numbers_cell(key, number, url, emit_numbers)
     content_tag :div do
+      return content_tag :span, CHECKED_MARK, class: 'marked--cell w-12 bg-accent text-accent' if number == CHECKED_MARK
+
       button_to number,
                 url,
                 method: :patch,
