@@ -4,3 +4,17 @@
 body {
     font-family: 'Yusei Magic', sans-serif;
 }
+.marked--cell {
+    text-align: center;
+    justify-content: center;
+    line-height: 1em;
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--rounded-btn,.5rem);
+    border-width: var(--border-btn,1px);
+    height: 3rem;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
